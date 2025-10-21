@@ -1,0 +1,35 @@
+# Firebase config with sensitive keys
+js/firebase-config.js
+
+# Environment variables
+.env
+.env.local
+
+# API keys
+config/
+
+# System files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+npm-debug.log*
+
+# Dependencies
+node_modules/
+
+# Build files
+dist/
+build/
+
+# Temporary files
+*.tmp
+.cache/
