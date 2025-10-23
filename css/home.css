@@ -1,0 +1,287 @@
+/* Hero Carousel Section */
+.hero-carousel {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.carousel-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.carousel-slide.active {
+    opacity: 1;
+    z-index: 1;
+    visibility: visible;
+}
+
+.carousel-slide video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+}
+
+/* Carousel Indicators */
+.carousel-indicators {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    gap: 15px;
+}
+
+.indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.indicator.active {
+    background: white;
+    transform: scale(1.7);
+}
+
+/* Video Controls */
+.video-controls {
+    position: absolute;
+    bottom: 30px;
+    right: 80px;
+    z-index: 10;
+}
+
+.control-btn {
+    color: white;
+    background-color: #12111190;
+    width: 167px;
+    font-weight: 700;
+    font-size: 1rem;
+    height: 44px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    
+}
+.control-btn:hover {
+    background: rgba(255, 255, 255, 0.5);
+    transform: scale(1.05);
+}
+
+/* Hero Content Overlay */
+.hero-content {
+    position: absolute;
+    top: 50%;
+    width: 756px;
+    height: 326px;
+    transform: translateY(-50%);
+    z-index: 5;
+    color: white;
+    max-width: 756px;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 30px 80px;  /* Reduced padding */
+    backdrop-filter: blur(10px);
+    overflow: hidden;  /* Hide overflow */
+}
+
+.hero-brand {
+    height: 80px;         /* Fixed height container */
+    display: flex;
+    align-items: center;  /* Centers logo vertically */
+}
+
+.hero-brand img {
+    height: 100px;         /* Bigger logo */
+    width: auto;
+    display: block;
+    filter: drop-shadow(2px 2px 8px rgba(0, 0, 0, 0.8));
+     transition: transform 0.3s ease;  
+    cursor: pointer;  
+}
+.hero-brand img:hover {
+    transform: scale(1.1);  /* Makes it 10% bigger */
+}
+.hero-content h2 {
+    font-size: 3.25rem;
+    font-weight: 500;
+    font-family: "Anton", sans-serif;
+    margin-top: -19px;        /* ← Add this */
+    margin-bottom: 12px;
+    line-height: 1.1;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+}
+.hero-content p {
+    font-size: 1rem;  
+    margin-bottom: 25px;  
+    line-height: 1.4;
+    font-family: 'Inter', sans-serif;
+    opacity: 0.95;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;                    /* Fixed height - no padding */
+    min-width: 180px;                /* Minimum width */
+    padding: 0 28px;                 /* Only horizontal padding */
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    box-sizing: border-box;
+}
+
+/* GET TICKETS Button */
+.btn-primary {
+    background: white;
+    color: #000;
+    border: 6px solid white;
+    height: 43px;
+}
+
+.btn-primary::after {
+    content: ' →';
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: white;
+    color: #000;
+    border: 2px solid #000;
+}
+
+.btn-primary:hover::after {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* BUY MERCH Button */
+.btn-secondary {
+    background: #131316;
+    color: white;
+    border: 6px solid #131316;
+    height: 44px;
+}
+
+.btn-secondary::after {
+    content: ' →';
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background: #131316;
+    color: white;
+    border: 2px solid white;
+}
+
+.btn-secondary:hover::after {
+    opacity: 1;
+    transform: translateX(0);
+}
+/* Responsive styles */
+@media (max-width: 768px) {
+    .hero-content {
+        left: 30px;
+        right: 30px;
+        max-width: none;
+    }
+
+    .hero-brand img {
+        height: 40px;
+    }
+
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    .btn {
+        padding: 12px 25px;
+        font-size: 0.85rem;
+    }
+
+    .carousel-indicators {
+        bottom: 20px;
+        gap: 10px;
+    }
+
+    .indicator {
+        width: 8px;
+        height: 8px;
+    }
+
+    .video-controls {
+        bottom: 20px;
+        right: 20px;
+    }
+
+    .control-btn {
+        width: 130px;
+        height: 40px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .control-btn {
+        width: 110px;
+        height: 35px;
+        font-size: 0.8rem;
+    }
+}

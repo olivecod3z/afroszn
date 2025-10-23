@@ -1,0 +1,232 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-x: hidden;
+    background: #000;
+    
+}
+
+/* Navbar Styles */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #000;
+    z-index: 1000;
+    padding: 0px 0;
+    background-color: #131316;
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.nav-logo {
+    height: 60px;           /* Set container height */
+    display: flex;
+    align-items: center;
+}
+
+.nav-logo img {
+    height: 120%;           /* Make logo bigger than container */
+    width: auto;
+    display: block;
+    object-fit: contain;
+    transform: scale(1.5);  /* Scale up the logo */
+    transform-origin: left center;
+      transition: transform 0.3s ease;  
+    cursor: pointer;
+}
+.nav-logo img:hover {
+    transform: scale(1.1);  /* Makes it 10% bigger */
+}
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 40px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-menu li a {
+    color: #9AA4B2;
+    text-decoration: none;
+    font-size: 1.25rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    position: relative;
+    font-family: 'Inter', sans-serif;
+}
+
+.nav-menu li a:hover {
+    color: #fff;
+}
+
+/* t */
+
+.nav-menu li a:hover::after {
+    width: 100%;
+}
+
+.nav-cart a {
+    color: #9AA4B2;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease;
+    text-decoration: none;
+}
+
+.nav-cart a:hover {
+    color: #fff;
+}
+
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.nav-toggle span {
+    width: 25px;
+    height: 3px;
+    background: #fff;
+    transition: all 0.3s ease;
+}
+
+.nav-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(8px, 8px);
+}
+
+.nav-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .nav-container {
+        padding: 0 20px;
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 60px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 60px);
+        background: #000;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding-top: 50px;
+        gap: 30px;
+        transition: left 0.3s ease;
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .nav-toggle {
+        display: flex;
+    }
+
+    .nav-logo img {
+        height: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-logo img {
+        height: 35px;
+    }
+}
+/* Social Community Section */
+.social-community-section {
+    background: #131316;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.social-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 150px;  /* Large gap between text and icons */
+}
+
+.social-text {
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin: 0;
+    white-space: nowrap;  /* Prevents text wrapping */
+}
+
+.social-icons {
+    display: flex;
+    gap: 50px;  /* Gap between the two icons */
+    align-items: center;
+}
+
+.social-icons a {
+    color: white;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-icons a:hover {
+    transform: scale(1.2);
+    opacity: 0.8;
+}
+
+.social-icons svg {
+    width: 35px;
+    height: 35px;
+}
+
+@media (max-width: 768px) {
+    .social-community-section {
+        height: auto;
+        padding: 30px 20px;
+    }
+
+    .social-container {
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .social-text {
+        font-size: 0.9rem;
+    }
+
+    .social-icons {
+        gap: 30px;
+    }
+
+    .social-icons svg {
+        width: 30px;
+        height: 30px;
+    }
+}
