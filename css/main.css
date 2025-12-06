@@ -7,7 +7,7 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     overflow-x: hidden;
-    background: #000;
+    
     
 }
 
@@ -17,10 +17,10 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    background: #000;
+    background: #0D0D0D;
     z-index: 1000;
     padding: 0px 0;
-    background-color: #131316;
+    background-color: #0D0D0D;
 }
 
 .nav-container {
@@ -118,16 +118,36 @@ body {
 
 /* Responsive styles */
 @media (max-width: 768px) {
+    /* CHANGE 1: Navbar height to 56px */
+    .navbar {
+        height: 56px;
+    }
+
     .nav-container {
         padding: 0 20px;
+        height: 56px;
+    }
+
+    .nav-logo {
+        height: 56px;
+    }
+
+    .nav-logo img {
+        height: 80%;
+        transform: scale(1);
+    }
+
+    /* CHANGE 2: Hide cart on mobile */
+    .nav-cart {
+        display: none;
     }
 
     .nav-menu {
         position: fixed;
-        top: 60px;
+        top: 56px;
         left: -100%;
         width: 100%;
-        height: calc(100vh - 60px);
+        height: calc(100vh - 56px);
         background: #000;
         flex-direction: column;
         align-items: center;
@@ -141,51 +161,65 @@ body {
         left: 0;
     }
 
+    /* CHANGE 3: Show hamburger menu */
     .nav-toggle {
         display: flex;
-    }
-
-    .nav-logo img {
-        height: 40px;
     }
 }
 
 @media (max-width: 480px) {
+    .navbar {
+        height: 56px;
+    }
+
+    .nav-container {
+        height: 56px;
+    }
+
+    .nav-logo {
+        height: 56px;
+    }
+
     .nav-logo img {
-        height: 35px;
+        height: 75%;
     }
 }
 /* Social Community Section */
 .social-community-section {
     background: #131316;
     height: 100px;
+    padding-bottom: 20px;
+    position: relative;
     display: flex;
-    justify-content: center;
     align-items: center;
+    
 }
 
 .social-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 150px;  /* Large gap between text and icons */
+    width: 100%;
+    position: relative;
 }
 
 .social-text {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     color: white;
     font-size: 1rem;
     font-weight: 600;
     letter-spacing: 2px;
     text-transform: uppercase;
     margin: 0;
-    white-space: nowrap;  /* Prevents text wrapping */
+    white-space: nowrap;
+font-family: 'Inter', sans-serif;
 }
 
 .social-icons {
+    position: absolute;
+    left: 50%;
+    transform: translateX(515px);  /* Positioned to the right of center */
     display: flex;
-    gap: 50px;  /* Gap between the two icons */
-    align-items: center;
+    gap: 50px;
 }
 
 .social-icons a {
@@ -212,13 +246,24 @@ body {
         padding: 30px 20px;
     }
 
-    .social-container {
-        flex-direction: column;
-        gap: 25px;
+    .social-text {
+        position: static;
+        transform: none;
+        text-align: center;
+        margin-bottom: 20px;
     }
 
-    .social-text {
-        font-size: 0.9rem;
+    .social-icons {
+        position: static;
+        transform: none;
+        justify-content: center;
+    }
+
+    .social-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
     }
 
     .social-icons {
@@ -228,5 +273,104 @@ body {
     .social-icons svg {
         width: 30px;
         height: 30px;
+    }
+}
+/* ============================================
+   PARALLAX STACKING - DESKTOP ONLY
+   ============================================ */
+
+/* Hero Carousel - Fixed on desktop only */
+.hero-carousel {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden !important;
+    z-index: 1;
+    background: #000;
+    margin: 0;
+    padding: 0;
+}
+
+/* Content Wrapper - Stacks on desktop only */
+.content-wrapper {
+    position: relative;
+    z-index: 2;
+    margin-top: 100vh;
+    background: #000;
+}
+
+/* Make sure body has no margin/padding */
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* Make sure navbar doesn't have gaps */
+.navbar {
+    margin: 0;
+    padding: 0;
+}
+
+/* Hide overflow on html */
+html {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* ============================================
+   MOBILE - NORMAL SCROLL (NO PARALLAX)
+   ============================================ */
+@media (max-width: 768px) {
+  .hero-carousel {
+    position: relative !important;
+    height: 420px;      /* choose a mobile-friendly height */
+    margin-top: 56px;
+    overflow: hidden;
+  }
+  .carousel-container,
+  .carousel-slide {
+    position: relative;
+    height: 100%;
+  }
+  .carousel-slide video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+
+@media (max-width: 480px) {
+    .hero-carousel {
+        position: relative !important;
+        z-index: auto;
+        height: 400px;  /* Slightly smaller for small phones */
+        margin-top: 56px;
+        overflow: hidden;
+    }
+    
+    .carousel-video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    .hero-content h2 {
+        font-size: 1.2rem;
+    }
+    
+    .hero-content p {
+        font-size: 0.85rem;
+    }
+    
+    .carousel-indicators {
+        bottom: 60px;
     }
 }

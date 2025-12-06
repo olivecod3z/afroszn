@@ -1,12 +1,13 @@
 /* Footer Section */
 .footer {
-    background: #000;
+    background: #131316;
     padding: 60px 20px 40px;
 }
 
 .footer-container {
     max-width: 1200px;
     margin: 0 auto;
+    height: 283px;
 }
 
 /* Footer Links */
@@ -14,7 +15,7 @@
     display: flex;
     justify-content: center;
     gap: 60px;
-    margin-bottom: 60px;
+    margin-bottom: 40px;
 }
 
 .footer-links a {
@@ -34,12 +35,17 @@
 .footer-logo {
     display: flex;
     justify-content: center;
-    margin-bottom: 40px;
+    margin-bottom: 0px;
 }
 
 .footer-logo img {
-    height: 60px;
+    height: 80px;
     width: auto;
+    object-fit: contain;
+    object-position: center;
+    max-width: 300px;
+    transform: scale(3);
+    margin-bottom: 20px;
 }
 
 /* Footer Divider */
@@ -47,7 +53,7 @@
     width: 100%;
     height: 1px;
     background: #333;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 /* Footer Copyright */

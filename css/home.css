@@ -1,9 +1,15 @@
 /* Hero Carousel Section */
 .hero-carousel {
-    position: relative;
+    position: fixed !important;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100vh;
     overflow: hidden;
+    z-index: 1;
+    background: #000;
+    margin: 0;
+    padding: 0;
 }
 
 .carousel-container {
@@ -20,12 +26,23 @@
     height: 100%;
     opacity: 0;
     visibility: hidden;
+    /* Slide transition - starts off-screen to the right */
+    transform: translateX(100%);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .carousel-slide.active {
     opacity: 1;
     z-index: 1;
     visibility: visible;
+    /* Active slide is centered */
+    transform: translateX(0);
+}
+
+/* Previous slide exits to the left */
+.carousel-slide.prev {
+    opacity: 0;
+    transform: translateX(-100%);
 }
 
 .carousel-slide video {
@@ -84,8 +101,8 @@
     cursor: pointer;
     transition: all 0.3s ease;
     border: none;
-    
 }
+
 .control-btn:hover {
     background: rgba(255, 255, 255, 0.5);
     transform: scale(1.05);
@@ -96,46 +113,49 @@
     position: absolute;
     top: 50%;
     width: 756px;
-    height: 326px;
+    height: auto;
     transform: translateY(-50%);
     z-index: 5;
     color: white;
     max-width: 756px;
     background: rgba(0, 0, 0, 0.6);
-    padding: 30px 80px;  /* Reduced padding */
+    padding: 30px 80px;
     backdrop-filter: blur(10px);
-    overflow: hidden;  /* Hide overflow */
+    overflow: hidden;
 }
 
 .hero-brand {
-    height: 80px;         /* Fixed height container */
+    height: 80px;
     display: flex;
-    align-items: center;  /* Centers logo vertically */
+    align-items: center;
 }
 
 .hero-brand img {
-    height: 100px;         /* Bigger logo */
+    height: 100px;
     width: auto;
     display: block;
     filter: drop-shadow(2px 2px 8px rgba(0, 0, 0, 0.8));
-     transition: transform 0.3s ease;  
-    cursor: pointer;  
+    transition: transform 0.3s ease;
+    cursor: pointer;
 }
+
 .hero-brand img:hover {
-    transform: scale(1.1);  /* Makes it 10% bigger */
+    transform: scale(1.1);
 }
+
 .hero-content h2 {
     font-size: 3.25rem;
     font-weight: 500;
     font-family: "Anton", sans-serif;
-    margin-top: -19px;        /* ← Add this */
+    margin-top: -19px;
     margin-bottom: 12px;
     line-height: 1.1;
     text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
 }
+
 .hero-content p {
-    font-size: 1rem;  
-    margin-bottom: 25px;  
+    font-size: 1rem;
+    margin-bottom: 25px;
     line-height: 1.4;
     font-family: 'Inter', sans-serif;
     opacity: 0.95;
@@ -156,9 +176,9 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    height: 48px;                    /* Fixed height - no padding */
-    min-width: 180px;                /* Minimum width */
-    padding: 0 28px;                 /* Only horizontal padding */
+    height: 48px;
+    min-width: 180px;
+    padding: 0 28px;
     transition: all 0.3s ease;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -217,20 +237,85 @@
     opacity: 1;
     transform: translateX(0);
 }
+
+/* Mobile Social Icons in Hero */
+.hero-social-icons {
+    display: none;
+}
+
+/* Content Wrapper - Stacks on hero */
+.content-wrapper {
+    position: relative;
+    z-index: 2;
+    margin-top: 100vh;
+    background: #000;
+}
+
+/* Make sure body has no margin/padding */
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* Make sure navbar doesn't have gaps */
+.navbar {
+    margin: 0;
+    padding: 0;
+}
+
+/* Hide overflow on html */
+html {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
 /* Responsive styles */
 @media (max-width: 768px) {
+    .hero-carousel {
+        position: relative !important;
+        z-index: auto;
+        height: 611px;
+        margin-top: 56px;
+    }
+
+    .content-wrapper {
+        position: static;
+        z-index: auto;
+        margin-top: 0;
+        /* height: 95px; */
+    }
+
     .hero-content {
-        left: 30px;
-        right: 30px;
-        max-width: none;
+        position: absolute;
+        top: 250px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: calc(100% - 40px);
+        background: transparent;
+        backdrop-filter: none;
+        padding: 0 20px;
+        text-align: center;
+        height: auto;
+    }
+    .hero-buttons {
+    display: flex;
+    justify-content: center; /* center rows */
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    }
+        .hero-brand {
+        justify-content: center;
     }
 
     .hero-brand img {
-        height: 40px;
+        height: 60px;
     }
 
-    .hero-content h1 {
-        font-size: 2.5rem;
+    .hero-carousel .hero-content h2 {
+        font-size: 2rem;
     }
 
     .hero-content p {
@@ -242,25 +327,32 @@
         font-size: 0.85rem;
     }
 
+    /* Show social icons under buttons in hero */
+    .hero-social-icons {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin-top: 20px;
+    }
+
+    .hero-social-icons a {
+        color: white;
+        transition: all 0.3s ease;
+    }
+
+    .hero-social-icons svg {
+        width: 32px;
+        height: 32px;
+    }
+
+    /* Hide carousel indicators on mobile */
     .carousel-indicators {
-        bottom: 20px;
-        gap: 10px;
+        display: none;
     }
 
-    .indicator {
-        width: 8px;
-        height: 8px;
-    }
-
+    /* Hide video controls on mobile */
     .video-controls {
-        bottom: 20px;
-        right: 20px;
-    }
-
-    .control-btn {
-        width: 130px;
-        height: 40px;
-        font-size: 0.9rem;
+        display: none;
     }
 }
 
@@ -279,9 +371,11 @@
         text-align: center;
     }
 
-    .control-btn {
-        width: 110px;
-        height: 35px;
-        font-size: 0.8rem;
+    .carousel-indicators {
+        display: none;
+    }
+
+    .video-controls {
+        display: none;
     }
 }

@@ -6,6 +6,14 @@
     <title>Afro Szn - Home</title>
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/event.css">
+    <link rel="stylesheet" href="../css/merch.css">
+    <link rel="stylesheet" href="../css/media.css">
+    <link rel="stylesheet" href="../css/playlist.css">
+    <link rel="stylesheet" href="../css/newsletter.css">
+    <link rel="stylesheet" href="../css/testimonials.css">
+    <link rel="stylesheet" href="../css/footer.css">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
@@ -15,15 +23,18 @@
 </head>
 <body>
     <!-- Navigation Bar -->
-    <nav class="navbar">
+   <section>
+     <nav class="navbar">
         <div class="nav-container">
-            <div class="nav-logo">
+         <a href="index.html">
+                <div class="nav-logo">
                 <img src="../images/logo2.png" alt="Afro Szn Logo">
             </div>
+         </a>
 
             <ul class="nav-menu">
-                <li><a href="events.html">Events</a></li>
-                <li><a href="tickets.html">Tickets</a></li>
+                <!-- <li><a href="events.html">Events</a></li>
+                <li><a href="tickets.html">Tickets</a></li> -->
                 <li><a href="shop.html">Shop</a></li>
                 <li><a href="media.html">Media</a></li>
                 <li><a href="bookus.html">Book Us</a></li>
@@ -45,8 +56,8 @@
                 <span></span>
             </div>
         </div>
-    </nav>
-
+      </nav>
+   </section>
     <!-- Hero Carousel Section -->
     <section class="hero-carousel">
         <div class="carousel-container">
@@ -83,11 +94,10 @@
             <p>Live shows that matter, pricing you can trust, vibes<br> that last. Afroszn is your passport to the rhythm.</p>
             <div class="hero-buttons">
                 <a href="tickets.html" class="btn btn-primary">
-                    GET TICKETS 
+                    Get tickets 
                 </a>
                 <a href="shop.html" class="btn btn-secondary">
-                    BUY MERCH
-                </a>
+                    Buy Merch                </a>
             </div>
         </div>
             <!-- Indicators -->
@@ -103,7 +113,10 @@
             </div>
         </div>
     </section>
-    <section class="social-community-section">
+   
+ <!-- Upcoming events section -->
+   <div class="content-wrapper">
+     <section class="social-community-section">
         <div class="social-container">
             <p class="social-text">JOIN OUR SOCIAL COMMUNITY →</p>
             <div class="social-icons">
@@ -120,7 +133,350 @@
             </div>
         </div>
     </section>
+     <section class="events-section">
+        <div class="events-container">
+            <div class="decorative-text-events top-left">
+                <img src="../images/left_decor.png" alt="Afro Szn">
+            </div>
+            <h2 class="events-heading">
+                UPCOMING EVENTS
+            </h2>
 
+            <div class="events-grid">
+                <!-- Event card 1 -->
+               <div class="event-card">
+                    <div class="event-image">
+                        <img src="../images/event_pic2.jpg" alt="The Callout Show">
+                       <h1 class="event-image-title">AFROSEASON <br>VOLUME 4</h1>
+                    </div>
+                    <div class="event-details">
+                        <span class="event-badge almost-full">Almost sold out</span>
+                        <h3 class="event-title">Afroseason: Volume 4 </h3>
+                        <p class="event-date">October 25, 2025</p>
+                        <p class="event-time">From 10:00 PM - 5:00 AM</p>
+                        <p class="event-location">Skybar memorial, Australia</p>
+                        <p class="event-price">$45 - $120</p>
+                    </div>  
+             </div>
+                 <!-- Event card 2 -->
+                  <div class="event-card">
+                    <div class="event-image">
+                        <img src="../images/event_pic1.jpg" alt="Techno Takeover">
+                         <h1 class="event-image-title">AFROSEASON <br>VOLUME 5</h1>
+                    </div>
+                    <div class="event-details">
+                        <span class="event-badge coming-soon">Coming soon</span>
+                        <h3 class="event-title">Afroseason: Volume 5</h3>
+                        <p class="event-date">December 25, 2025</p>
+                        <p class="event-time">From Time: 10:00 PM - 5:00 AM</p>
+                        <p class="event-location">Memo grande stadium, Australia</p>
+                        <p class="event-price">$45 - $120</p>
+                    </div>
+                </div>
+        </div>
+        <div class="button-wrapper">
+                <a href="tickets.html" class="all-btn">VIEW ALL EVENTS →</a>
+            </div>
+    </section>
+
+     <!-- New Arrivals Section -->
+    <section class="merch-section">
+        <div class="merch-container">
+            <h2 class="merch-heading">NEW ARRIVALS</h2>
+
+            <div class="merch-grid">
+                <!-- Merch Card 1 -->
+                <div class="merch-card">
+                    <div class="merch-image">
+                        <img src="../images/merch1.jpg" alt="Afroszn Women">
+                    </div>
+                    <div class="merch-details">
+                        <h3 class="merch-title">AFROSZN WOMEN</h3>
+                        <p class="merch-price">$32</p>
+                    </div>
+                </div>
+
+                <!-- Merch Card 2 -->
+                <div class="merch-card">
+                    <div class="merch-image">
+                       <video autoplay muted loop playsinline>
+                        <source src="../videos/merch4.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </div>
+                    <div class="merch-details">
+                        <h3 class="merch-title">AFROSZN SHIRTS</h3>
+                        <p class="merch-price">$32</p>
+                    </div>
+                </div>
+
+                <!-- Merch Card 3 -->
+                <div class="merch-card">
+                    <div class="merch-image">
+                        <img src="../images/merch3.jpg" alt="Afroszn Cap">
+                    </div>
+                    <div class="merch-details">
+                        <h3 class="merch-title">AFROSZN CAP</h3>
+                        <p class="merch-price">$32</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="button-wrapper">
+            <a href="shop.html" class="all-btn">SHOP NOW →</a>
+        </div>
+    </section>
+
+     <!-- Gallery Section -->
+    <section class="gallery-section">
+        <div class="gallery-container">
+            <h2 class="gallery-heading">MOMENTS CAPTURED <span class="highlight">IN TIME</span></h2>
+
+            <div class="gallery-grid">
+                <div class="gallery-item gallery-item-1">
+                    <img src="../images/media1.jpg" alt="Gallery Image 1">
+                </div>
+                <div class="gallery-item gallery-item-2">
+                     <video autoplay muted loop playsinline>
+                        <source src="../videos/dj_hero_3.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="gallery-item gallery-item-3">
+                    <img src="../images/media4.jpg" alt="Gallery Image 3">
+                </div>
+                <div class="gallery-item gallery-item-4">
+                    <img src="../images/media3.jpg" alt="Gallery Image 4">
+                </div>
+            </div>
+
+           
+        </div>
+        <div class="button-wrapper">
+             <a href="media.html" class="all-btn">VIEW GALLERY →</a>
+        </div>
+    </section>
+
+     <!-- Featured Playlists Section -->
+    <section class="playlists-section">
+        <div class="playlists-container">
+            <h2 class="playlists-heading">FEATURED PLAYLISTS</h2>
+
+            <div class="playlists-grid">
+                <!-- Playlist Card 1 -->
+                <div class="playlist-card">
+                    <div class="playlist-image">
+                        <img src="../images/pl1.jpg" alt="Amapiano">
+                    </div>
+                    <div class="playlist-details">
+                        <p class="playlist-label">LISTEN TO AFROSZN PLAYLIST</p>
+                        <h3 class="playlist-title">Amapiano</h3>
+                         <!-- EMBEDDED SPOTIFY PLAYER HERE -->
+
+                        <button class="play-now-btn">PLAY NOW</button>
+                    </div>
+                </div>
+
+                <!-- Playlist Card 2 -->
+                <div class="playlist-card">
+                    <div class="playlist-image">
+                      <video autoplay muted loop playsinline>
+                        <source src="../videos/mix_vid.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    </div>
+                    <div class="playlist-details">
+                        <p class="playlist-label">LISTEN TO AFROSZN PLAYLIST</p>
+                        <h3 class="playlist-title">Afrobeats</h3>
+                        <!-- EMBEDDED SPOTIFY PLAYER HERE -->
+                        <button class="play-now-btn">PLAY NOW</button>
+                    </div>
+                </div>
+
+                <!-- Playlist Card 3 -->
+                <div class="playlist-card">
+                    <div class="playlist-image">
+                        <img src="../images/pl3.png" alt="Dance hall">
+                    </div>
+                    <div class="playlist-details">
+                        <p class="playlist-label">LISTEN TO AFROSZN PLAYLIST</p>
+                        <h3 class="playlist-title">Dance hall</h3>
+                        <!-- EMBEDDED SPOTIFY PLAYER HERE -->
+
+                        <button class="play-now-btn">PLAY NOW</button>
+                    </div>
+                </div>
+            </div>
+
+           
+        </div>
+        <div class="button-wrapper">
+            <a href="" class="all-btn">LISTEN ON SPOTIFY →</a>
+        </div>
+    </section>
+ 
+     <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="testimonials-container">
+            <h2 class="testimonials-heading">WHAT COMMUNITY SAYS</h2>
+
+            <!-- Top Row - Slides Left to Right -->
+            <div class="testimonials-row testimonials-row-left">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">AFROSZN events are always lit.</p>
+                    <div class="testimonial-author">
+                        <img src="../images/pfp5.jpg" alt="Zainab Hassan">
+                        <div class="author-info">
+                            <p class="author-name">Zainab Hassan, Influencer</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">AFROSZN events are always lit.</p>
+                    <div class="testimonial-author">
+                        <img src="../images/pfp5.jpg" alt="Zainab Hassan">
+                        <div class="author-info">
+                            <p class="author-name">Zainab Hassan, Influencer</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">Professional hosting. Premium events guaranteed.</p>
+                    <div class="testimonial-author">
+                        <img src="../images/pfp6.jpg" alt="Lead DevOps Engineer">
+                        <div class="author-info">
+                            <p class="author-name">Lead DevOps Engineer</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">AFROSZN fills our hearts with joy</p>
+                    <div class="testimonial-author">
+                        <img src="../images/pfp2.png" alt="ML Engineer">
+                        <div class="author-info">
+                            <p class="author-name">ML Engineer</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Duplicate for infinite scroll -->
+                <div class="testimonial-card">
+                    <p class="testimonial-text">AFROSZN events are always lit.</p>
+                    <div class="testimonial-author">
+                        <img src="../images/pfp5.jpg" alt="Zainab Hassan">
+                        <div class="author-info">
+                            <p class="author-name">Zainab Hassan, Influencer</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">AFROSZN events are always lit.</p>
+                    <div class="testimonial-author">
+                        <img src="../images/pfp5.jpg" alt="Zainab Hassan">
+                        <div class="author-info">
+                            <p class="author-name">Zainab Hassan, Influencer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Row - Slides Right to Left -->
+            <div class="testimonials-row testimonials-row-right">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">AFROSZN hosts events we dream about.</p>
+                    <div class="testimonial-author">
+                        <img src="../images/pfp1.jpg" alt="Tunde Okafor">
+                        <div class="author-info">
+                            <p class="author-name">Tunde Okafor, Event Enthusiast</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">AFROSZN hosts events we dream about.</p>
+                    <div class="testimonial-author">
+                        <img src="../images/avatar-6.jpg" alt="Tunde Okafor">
+                        <div class="author-info">
+                            <p class="author-name">Tunde Okafor, Event Enthusiast</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">Best platform for booking events.</p>
+                    <div class="testimonial-author">
+                        <img src="../images/pfp4.jpg" alt="Chisom Adeyemi">
+                        <div class="author-info">
+                            <p class="author-name">Chisom Adeyemi, Music Producer</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">Top-tier events, authentic vibes always.</p>
+                    <div class="testimonial-author">
+                        <img src="../images/avatar-8.jpg" alt="DJ Kofi">
+                        <div class="author-info">
+                            <p class="author-name">DJ Kofi, Electronic Producer</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Duplicate for infinite scroll -->
+                <div class="testimonial-card">
+                    <p class="testimonial-text">AFROSZN hosts events we dream about.</p>
+                    <div class="testimonial-author">
+                        <img src="../images/pfp3.jpg" alt="Dr Kim">
+                        <div class="author-info">
+                            <p class="author-name">Dr Kim, Event Enthusiast</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">AFROSZN hosts events we dream about.</p>
+                    <div class="testimonial-author">
+                        <img src="../images/pfp2.jpg" alt="Lily Thomas">
+                        <div class="author-info">
+                            <p class="author-name">Lily Thomas, Event Enthusiast</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="newsletter-outer">
+            <div class="newsletter-inner">
+                <h2 class="newsletter-heading">Subscribe to our<br>newletter</h2>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email address" class="newsletter-input">
+                    <button type="submit" class="newsletter-btn">subscribe</button>
+                </form>
+            </div>
+        </div>
+   
+
+      <!-- Footer Section -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-links">
+                <a href="support.html">support</a>
+                <a href="contact.html">contact us</a>
+                <a href="about.html">About us</a>
+                <a href="career.html">Career</a>
+                <a href="legal.html">Legal</a>
+                <a href="privacy.html">Privacy policy</a>
+            </div>
+
+            <div class="footer-logo">
+                <img src="../images/logo2.png" alt="AFROSZN">
+            </div>
+
+            <div class="footer-divider"></div>
+
+            <div class="footer-copyright">
+                <p>© 2025 AFROSZN. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+     </section>
+   </div>
     <script src="../js/main.js"></script>
 </body>
 </html>
