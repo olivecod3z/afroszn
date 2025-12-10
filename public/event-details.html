@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/event-details.css">
     <link rel="stylesheet" href="../css/footer.css">
-
+    <link rel="stylesheet" href="../css/checkout-flow.css">
+    <link rel="stylesheet" href="../css/checkout-overlay.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
@@ -114,7 +115,7 @@
              </div>
                <!-- RIGHT SIDEBAR TICKET CARD -->
              <div class="ticket-card">
-                    <p class="ticket-date">Friday October, 2025, 10PM GMT+1</p>
+                    <p class="ticket-date">Friday October, 2025 — 10:00pm ACST</p>
                     
                    <div class="ticket-type-container">
                         <button class="ticket-type active">Early bird</button>
@@ -125,13 +126,30 @@
 
                     <p class="ticket-price">$25 <span>/person</span></p>
                     <p class="ticket-note">
-                        Limited early access tickets with exclusive perks and priority entry
+                        Limited early access tickets with <br> exclusive perks and priority entry
                     </p>
+                    <!-- Quantity counter -->
+                    <div class="quantity-container">
+                        <span class="quantity-label">Quantity</span>
+                     <div class="quantity-controls">
+                            <button class="quantity-btn" id="decreaseQty">−</button>
+                            <span class="quantity-value" id="quantityValue">1</span>
+                            <button class="quantity-btn" id="increaseQty">+</button>
+                     </div>
+                  </div>
 
                     <button class="ticket-btn">Get tickets</button>
              </div>
             </div>
      </section>
+       <!-- Mobile Sticky Footer (shows only on mobile) -->
+     <div class="mobile-ticket-footer">
+        <div class="footer-ticket-info">
+            <div class="footer-ticket-price">$45</div>
+            <div class="footer-ticket-date">Friday October, 2025</div>
+        </div>
+        <button class="footer-ticket-btn">Get ticket</button>
+     </div>
      <!-- Footer Section -->
     <footer class="footer">
         <div class="footer-container">
@@ -157,6 +175,8 @@
     </footer>
      </section>
         <script src="../js/main.js"></script>
+        <script src="../js/ticketcard.js"></script>
+        <script src="../js/checkout-flow.js"></script>
 
 </body>
 </html>

@@ -177,6 +177,18 @@
 }
 
 @media (max-width: 480px) {
+    .all-btn {
+    width: 85%;                  
+    max-width: 300px;           
+    padding: 16px 28px;          
+    font-size: 0.9rem;           
+    min-height: 52px;         
+    display: flex;             
+    align-items: center;         
+    justify-content: center;     
+    letter-spacing: 0.8px;       
+    white-space: normal;         
+}
     .playlists-section {
         padding: 40px 15px;
     }

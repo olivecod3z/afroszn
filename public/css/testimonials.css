@@ -20,6 +20,10 @@
     letter-spacing: 2px;
 }
 
+.testimonials-heading .highlight {
+    color: #FF6B35;
+}
+
 
 /* Testimonials Rows */
 .testimonials-row {
@@ -110,7 +114,7 @@
 @media (max-width: 768px) {
   /* keep section padding but reduce extreme spacers */
   .testimonials-section {
-    padding: 48px 0;
+    padding: 48px 0 60px 0;      /* INCREASED: added bottom padding */
     position: relative;
     overflow-x: hidden;
     overflow-y: visible;
@@ -122,20 +126,29 @@
     padding: 0 20px;
   }
 
-  /* hide the desktop rows container; we'll show a deck instead */
-  .testimonials-container {
+  /* Hide only the rows, not the container */
+  .testimonials-row-left,
+  .testimonials-row-right {
     display: none;
   }
 
   /* the deck we create in JS; will contain the same .testimonial-card nodes */
-  .testimonials-stack { display: block; width: 100%; max-width: 980px; margin: 0 auto; padding: 0 16px; }
+  .testimonials-stack { 
+    display: block; 
+    width: 100%; 
+    max-width: 980px; 
+    margin: 0 auto; 
+    padding: 0 16px; 
+  }
+  
   .deck {
     position: relative;
-    height: 320px;                /* adjust if your cards are taller */
+    height: 200px;                /* REDUCED: adjust to fit card height better */
     display: block;
     overflow: visible;
     touch-action: pan-y;
     user-select: none;
+    margin-bottom: 20px;          /* ADDED: spacing to controls */
   }
 
   /* Layer the existing .testimonial-card WITHOUT changing inner visuals */
@@ -163,16 +176,57 @@
   .deck .testimonial-card.dragging { transition: none; cursor: grabbing; }
 
   /* controls (optional) */
-  .deck-controls { display:flex; gap:12px; align-items:center; justify-content:center; margin-top:12px; }
-  .deck-controls button { background: rgba(255,255,255,0.04); color:#fff; border:0; width:40px; height:36px; border-radius:8px; font-size:20px; }
-  .dots { display:flex; gap:6px; }
-  .dots button { width:8px; height:8px; border-radius:8px; background: rgba(255,255,255,0.12); border:0; padding:0; }
-  .dots button.active { background:#fff; }
+  .deck-controls { 
+    display: flex; 
+    gap: 12px; 
+    align-items: center; 
+    justify-content: center; 
+    margin-top: 0;               /* REMOVED: extra top margin */
+  }
+  
+  .deck-controls button { 
+    background: rgba(255,255,255,0.04); 
+    color: #fff; 
+    border: 0; 
+    width: 40px; 
+    height: 36px; 
+    border-radius: 8px; 
+    font-size: 20px; 
+    cursor: pointer;
+  }
+  
+  .dots { 
+    display: flex; 
+    gap: 6px; 
+  }
+  
+  .dots button { 
+    width: 8px; 
+    height: 8px; 
+    border-radius: 8px; 
+    background: rgba(255,255,255,0.12); 
+    border: 0; 
+    padding: 0; 
+    cursor: pointer;
+  }
+  
+  .dots button.active { 
+    background: #fff; 
+  }
 }
 
-/* Small phones: tweak text and card size slightSly */
+/* Small phones: tweak text and card size slightly */
 @media (max-width: 480px) {
-  .testimonials-heading { font-size: 1.75rem; }
-  .deck { height: 200px; }
-  .deck .testimonial-card { max-width: 340px; }
+  .testimonials-heading { 
+    font-size: 1.75rem; 
+  }
+  
+  .deck { 
+    height: 180px;              /* REDUCED: slightly smaller for mobile */
+    margin-bottom: 16px;        /* REDUCED: less spacing on small screens */
+  }
+  
+  .deck .testimonial-card { 
+    max-width: 340px; 
+  }
 }

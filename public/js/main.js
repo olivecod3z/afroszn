@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
    MOBILE TESTIMONIAL DECK ADAPTER
 ============================ */
 (function () {
-  const MOBILE_BREAK = 480;
+  const MOBILE_BREAK = 768; // FIXED: Changed from 480 to 768 to match CSS
   let deckInitialized = false;
   let original = null;
 
@@ -133,10 +133,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const top = container.querySelector('.testimonials-row-left');
     const bottom = container.querySelector('.testimonials-row-right');
 
+    if (!top || !bottom) return; // Safety check
+
     const cards = [
       ...top.querySelectorAll('.testimonial-card'),
       ...bottom.querySelectorAll('.testimonial-card')
     ];
+
+    if (cards.length === 0) return; // Safety check
 
     original = {
       top: top.innerHTML,
@@ -151,7 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
     deck.className = "deck";
     stackSection.appendChild(deck);
 
-    cards.forEach(c => deck.appendChild(c));
+    cards.forEach(c => deck.appendChild(c.cloneNode(true))); // Clone to avoid removing originals
 
     const controls = document.createElement('div');
     controls.className = "deck-controls";
@@ -162,10 +166,8 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
     stackSection.appendChild(controls);
 
-    container.parentNode.insertBefore(stackSection, container);
-
-    top.style.display = "none";
-    bottom.style.display = "none";
+    // Insert after the container instead of before it
+    container.parentNode.insertBefore(stackSection, container.nextSibling);
 
     initDeckBehavior(deck);
     deckInitialized = true;
@@ -173,13 +175,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function destroyDeck() {
     if (!deckInitialized) return;
-
-    const container = document.querySelector('.testimonials-container');
-    const top = container.querySelector('.testimonials-row-left');
-    const bottom = container.querySelector('.testimonials-row-right');
-
-    top.innerHTML = original.top;
-    bottom.innerHTML = original.bottom;
 
     const stack = document.querySelector('.testimonials-stack');
     if (stack) stack.remove();

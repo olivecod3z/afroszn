@@ -93,6 +93,102 @@
     background: #131316;
     transform: scale(1.05);
 }
+
+/* ===== SMALL LAPTOP/LARGE TABLET (≤1200px) ===== */
+@media (max-width: 1200px) {
+  .newsletter-outer {
+    height: auto;
+    padding: 40px 20px;
+  }
+
+  .newsletter-inner {
+    width: 95%;
+    height: auto;
+    padding: 40px 50px;
+    gap: 30px;
+  }
+
+  .newsletter-heading {
+    font-size: 3.5rem;
+    line-height: 1.1;
+  }
+
+  .newsletter-input {
+    width: 280px;
+    height: 60px;
+    font-size: 0.95rem;
+  }
+
+  .newsletter-btn {
+    padding: 20px 50px;
+    height: 60px;
+    font-size: 0.95rem;
+  }
+}
+
+/* ===== TABLET LANDSCAPE (≤1024px) ===== */
+@media (max-width: 1024px) {
+  .newsletter-inner {
+    padding: 35px 40px;
+    gap: 25px;
+  }
+
+  .newsletter-heading {
+    font-size: 3rem;
+  }
+
+  .newsletter-form {
+    gap: 12px;
+  }
+
+  .newsletter-input {
+    width: 250px;
+    height: 55px;
+    padding: 10px 20px;
+  }
+
+  .newsletter-btn {
+    padding: 18px 40px;
+    height: 55px;
+  }
+}
+
+/* ===== TABLET PORTRAIT (≤900px) ===== */
+@media (max-width: 900px) {
+  .newsletter-inner {
+    flex-direction: column;
+    text-align: center;
+    padding: 35px 30px;
+    gap: 25px;
+  }
+
+  .newsletter-heading {
+    font-size: 2.8rem;
+    margin-bottom: 10px;
+  }
+
+  .newsletter-form {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 15px;
+  }
+
+  .newsletter-input {
+    width: 100%;
+    max-width: 400px;
+    height: 55px;
+  }
+
+  .newsletter-btn {
+    width: 100%;
+    max-width: 250px;
+    height: 55px;
+    padding: 15px 0;
+  }
+}
+
+/* ===== MOBILE (≤768px) ===== */
 @media (max-width: 768px) {
   .newsletter-section {
     padding: 0 0 60px 0;
@@ -121,7 +217,7 @@
   }
 
   .newsletter-form {
-    flex-direction: column; /* Stack vertically */
+    flex-direction: column;
     align-items: center;
     width: 100%;
     gap: 15px;
@@ -144,6 +240,7 @@
   }
 }
 
+/* ===== SMALL MOBILE (≤480px) ===== */
 @media (max-width: 480px) {
   .newsletter-inner {
     padding: 30px 20px;

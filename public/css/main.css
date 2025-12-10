@@ -8,7 +8,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     overflow-x: hidden;
     
-    
+    background: #0D0D0D;
 }
 
 /* Navbar Styles */
@@ -17,10 +17,10 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    background: #0D0D0D;
+    background: #131316;
     z-index: 1000;
     padding: 0px 0;
-    background-color: #0D0D0D;
+    background-color: #131316;
 }
 
 .nav-container {
@@ -133,7 +133,7 @@ body {
     }
 
     .nav-logo img {
-        height: 80%;
+        height: 120%;
         transform: scale(1);
     }
 
@@ -181,7 +181,7 @@ body {
     }
 
     .nav-logo img {
-        height: 75%;
+        height: 110%;
     }
 }
 /* Social Community Section */

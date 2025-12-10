@@ -1,0 +1,234 @@
+/* Additional Styles for 3-Step Checkout Flow */
+
+/* Step 1 Specific Styles */
+.checkout-date-header {
+    text-align: center;
+    color: #9AA4B2;
+    font-size: 0.9rem;
+    margin-bottom: 30px;
+}
+
+.back-arrow {
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: opacity 0.3s ease;
+}
+
+.back-arrow:hover {
+    opacity: 0.7;
+}
+
+/* Ticket Selection Card */
+.ticket-selection-card {
+    background: #1a1a1d;
+    border: 1px solid #525861;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 40px;
+}
+
+.ticket-selection-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #525861;
+}
+
+.ticket-selection-header span {
+    color: white;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.quantity-controls-inline {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: #131316;
+    border: 1px solid #525861;
+    border-radius: 8px;
+    padding: 5px 10px;
+}
+
+.quantity-controls-inline button {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.quantity-controls-inline button:hover {
+    background: #F04400;
+    border-radius: 4px;
+}
+
+.quantity-controls-inline span {
+    color: white;
+    font-weight: 600;
+    min-width: 20px;
+    text-align: center;
+}
+
+.ticket-price-info {
+    padding-top: 10px;
+}
+
+.ticket-price-main {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.ticket-remaining {
+    color: #F04400;
+    font-size: 0.85rem;
+    margin-bottom: 4px;
+}
+
+.sales-end {
+    color: #9AA4B2;
+    font-size: 0.85rem;
+}
+
+/* Register Button (Step 1) */
+.register-btn {
+    width: 100%;
+    padding: 16px;
+    background: #F04400;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 30px;
+    transition: all 0.3s ease;
+}
+
+.register-btn:hover {
+    background: #d63a00;
+    transform: translateY(-2px);
+}
+
+/* Step 3 - Payment Methods */
+.payment-methods {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.payment-method {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    background: #1a1a1d;
+    border: 2px solid #525861;
+    border-radius: 8px;
+    color: #9AA4B2;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.payment-method input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #F04400;
+    cursor: pointer;
+}
+
+.payment-method svg {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+.payment-method span {
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.payment-method:hover {
+    border-color: #F04400;
+    background: rgba(240, 68, 0, 0.05);
+}
+
+.payment-method.active {
+    border-color: #F04400;
+    background: rgba(240, 68, 0, 0.1);
+    color: white;
+}
+
+
+/* Form adjustments for payment page */
+.step-3 .form-group input {
+    background: #1a1a1d;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .ticket-selection-card {
+        padding: 16px;
+    }
+    
+    .ticket-selection-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .payment-methods {
+        gap: 10px;
+    }
+    
+    .payment-method {
+        padding: 12px;
+    }
+    
+    .payment-method svg {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .payment-method span {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .checkout-date-header {
+        font-size: 0.85rem;
+    }
+    
+    .ticket-selection-header span {
+        font-size: 0.9rem;
+    }
+    
+    .ticket-price-main {
+        font-size: 1.3rem;
+    }
+    
+    .quantity-controls-inline {
+        gap: 10px;
+    }
+}

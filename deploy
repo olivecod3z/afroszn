@@ -1,0 +1,2 @@
+cd C:\Users\aguet\afroszn
+firebase deploy --only hosting
