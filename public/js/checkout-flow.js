@@ -429,7 +429,7 @@ document.addEventListener('DOMContentLoaded', function() {
             checkoutFlow.showStep1({
                 eventName: 'The Callout Show',
                 eventDate: 'Saturday, November 1 - 12 - 3am WAT',
-                eventImage: '../images/event_checkout.png',
+                eventImage: 'images/event_checkout.png',
                 ticketType: ticketType,
                 quantity: quantity,
                 basePrice: basePrice,
