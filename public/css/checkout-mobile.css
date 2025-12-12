@@ -1,0 +1,436 @@
+/* ============================================
+   CHECKOUT PAGES - FULL SCREEN NAVIGATION
+   ============================================ */
+
+.checkout-body {
+    background: #0D0D0D;
+    min-height: 100vh;
+    color: white;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Header */
+.checkout-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background: #131316;
+    border-bottom: 1px solid #2a2a2d;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.back-btn,
+.close-btn {
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s ease;
+    text-decoration: none;
+}
+
+.back-btn:hover,
+.cart-icon:hover {
+    opacity: 0.7;
+}
+
+.checkout-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    margin: 0;
+    text-align: center;
+}
+
+/* Main Content */
+.checkout-main {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 24px 20px;
+}
+
+/* Event Date */
+.event-date-text {
+    text-align: center;
+    color: #9AA4B2;
+    font-size: 0.85rem;
+    margin: 0 0 32px 0;
+}
+
+/* Progress Steps */
+.progress-steps {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 32px;
+}
+
+.step {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #2a2a2d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.step.active {
+    background: #F04400;
+    color: white;
+}
+
+.step.completed {
+    background: #F04400;
+    color: white;
+    font-size: 1.2rem;
+}
+
+.step-line {
+    width: 40px;
+    height: 2px;
+    background: #2a2a2d;
+}
+
+/* Section Title */
+.section-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: white;
+    margin: 0 0 24px 0;
+}
+
+/* Ticket Card (Step 1) */
+.ticket-card {
+    background: #0D0D0D;
+    border: 1px solid #F04400;
+    padding: 40px 20px;
+    margin-bottom: 300px;
+}
+
+.ticket-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #2a2a2d;
+    margin-bottom: 16px;
+}
+
+.ticket-type-name {
+    color: white;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #0D0D0D;
+    border: 1px solid #2a2a2d;
+    border-radius: 8px;
+    padding: 6px 12px;
+}
+
+.qty-btn {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease;
+}
+
+.qty-btn:hover {
+    color: #F04400;
+}
+
+.qty-value {
+    color: white;
+    font-weight: 600;
+    min-width: 20px;
+    text-align: center;
+}
+
+.ticket-info {
+    padding-top: 8px;
+}
+
+.ticket-price {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0 0 8px 0;
+}
+
+.ticket-remaining {
+    color: #9AA4B2;
+    font-size: 0.8rem;
+    margin: 0;
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+    color: #9AA4B2;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 12px 14px;
+    background: #0D0D0D;
+    border: 1px solid #2a2a2d;
+    border-radius: 0px;
+    color: white;
+    font-size: 0.95rem;
+    font-family: 'Inter', sans-serif;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #F04400;
+}
+
+.form-group input::placeholder {
+    color: #0D0D0D;
+}
+
+.form-group select {
+    cursor: pointer;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+/* Payment Methods */
+.payment-methods {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.payment-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    background: #0D0D0D;
+    border: 2px solid #2a2a2d;
+    color: #9AA4B2;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    text-align: left;
+}
+
+/* custom radio (base) */
+.payment-option input[type="radio"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #9AA4B2;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  transition: border-color 150ms ease, background 150ms ease;
+  flex-shrink: 0;
+}
+
+/* show hover focus state */
+.payment-option input[type="radio"]:hover,
+.payment-option input[type="radio"]:focus {
+  border-color: #fff;
+  outline: none;
+}
+
+/* when checked (or when option gets .active) show the blue dot */
+.payment-option input[type="radio"]:checked,
+.payment-option.active input[type="radio"] {
+  border-color: #4285F4; /* blue border */
+  background: radial-gradient(circle at center, #4285F4 55%, transparent 56%);
+}
+
+/* optional — make the dot slightly smaller on very small screens */
+@media (max-width: 480px) {
+  .payment-option input[type="radio"] { width: 18px; height: 18px; }
+  .payment-option input[type="radio"]:checked,
+  .payment-option.active input[type="radio"] {
+    background: radial-gradient(circle at center, #4285F4 50%, transparent 51%);
+  }
+}
+
+
+.payment-option svg {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+}
+
+.payment-option span {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.payment-option:hover {
+    border-color: #4285F4;
+}
+
+.payment-option.active {
+    border-color: #4285F4;
+    color: white;
+}
+
+.logo-container {
+    background: #0D0D0D;
+    border: 1px solid #2a2a2d;
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 50px;
+    height: 24px;
+}
+/* Primary Button */
+.primary-btn {
+    width: 100%;
+    padding: 14px;
+    background: #F04400;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.3s ease;
+    margin-top: 8px;
+}
+
+.primary-btn:hover {
+    background: #d63a00;
+}
+
+.primary-btn:disabled {
+    background: #666;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.apple-glyph {
+    width: 15px !important;
+    height: 15px !important;
+    flex-shrink: 0;
+}
+
+/* text stays the same size and alignment */
+.apple-pay-text {
+  font-size: 9px !important; 
+  line-height: 1;
+  color: white;  
+  margin-left: -2px;
+} 
+/* .gpay-glyph {
+    width: 85px;  
+    height: auto;
+    display: block;
+} */
+
+
+/* Small Mobile Adjustments */
+@media (max-width: 480px) {
+    .checkout-header {
+        padding: 16px;
+    }
+    
+    .checkout-title {
+        font-size: 0.9rem;
+    }
+    
+    .checkout-main {
+        padding: 20px 16px;
+    }
+    
+    .event-date-text {
+        font-size: 0.8rem;
+        margin-bottom: 24px;
+    }
+    
+    .progress-steps {
+        gap: 10px;
+        margin-bottom: 24px;
+    }
+    
+    .step {
+        width: 32px;
+        height: 32px;
+        font-size: 0.9rem;
+    }
+    
+    .step-line {
+        width: 30px;
+    }
+    
+    .section-title {
+        font-size: 1rem;
+        margin-bottom: 20px;
+    }
+    
+    .ticket-card {
+        padding: 16px;
+        margin-bottom: 24px;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Desktop View */
+@media (min-width: 769px) {
+    .checkout-main {
+        max-width: 600px;
+        padding: 40px 20px;
+    }
+    
+    .checkout-header {
+        padding: 24px 40px;
+    }
+    
+    .checkout-title {
+        font-size: 1.2rem;
+    }
+}

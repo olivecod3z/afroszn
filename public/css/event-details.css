@@ -72,15 +72,14 @@ body {
 .event-details-layout {
     padding: 0 115px 0;
     display: grid;
-    grid-template-columns: 1fr 535px; /* Match ticket card width */
-    gap: 60px; /* Space between content and ticket card */
+    grid-template-columns: 1fr 535px;
+    gap: 60px;
     max-width: 1600px;
     margin: 0 auto;
 }
 
 .event-details {
-    /* Left column - event details */
-    min-width: 0; /* Prevent overflow */
+    min-width: 0;
 }
 
 .event-badge {
@@ -178,7 +177,7 @@ body {
     margin-bottom: 200px;
 }
 
-/* Ticket card section - FIXED */
+/* Ticket card section - DESKTOP */
 .ticket-card {
     background: #0D0D0D;
     padding: 54px;
@@ -192,7 +191,7 @@ body {
     margin-top: 220px;
     z-index: 50;
     align-self: start;
-    justify-self: end; 
+    justify-self: end;
 }
 
 .ticket-date {
@@ -200,7 +199,7 @@ body {
     font-size: 1rem;
     margin-bottom: 25px;
     font-family: Inter, sans-serif;
-    padding: 0 ;
+    padding: 0;
     font-weight: 400;
     text-align: center;
 }
@@ -335,10 +334,6 @@ body {
     font-size: 1rem;
 }
 
-/* Mobile Sticky Footer - Hidden by default */
-.mobile-ticket-footer {
-    display: none;
-}
 
 /* ===== TABLET/SMALL LAPTOP (769px - 1024px) ===== */
 @media (max-width: 1024px) {
@@ -363,7 +358,7 @@ body {
 
     .ticket-card {
         margin-top: 100px;
-        padding: 20px;
+        padding: 40px;
         width: 450px;
         height: auto;
     }
@@ -373,7 +368,7 @@ body {
     }
 
     .ticket-date {
-        padding: 0 20px 0;
+        padding: 0;
     }
 
     .event-title {
@@ -394,7 +389,7 @@ body {
     }
 
     .ticket-card {
-        padding: 18px;
+        padding: 30px;
         width: 380px;
     }
 
@@ -409,207 +404,155 @@ body {
     .icon-btn {
         display: none !important;
     }
+    
     .navbar {
         background-color: #0D0D0D;
     }
+    
     .nav-logo {
-     height: 100px;
-
+        height: 100px;
     }
+    
     .event-hero {
         border-radius: 12px;
         margin: 70px 20px 20px;
     }
-    .event-hero img{
+    
+    .event-hero img {
         height: 174px;
     }
+    
     .event-hero-title {
         font-weight: 400;
         font-size: 22px;
+        line-height: 1.05;
+        left: 10%;
+        transform: translateX(0%) translateY(-50%);
+        text-align: left;
+        width: 80%;
     }
 
+    /* Change to flex layout for mobile */
+    .event-details-layout {
+        padding: 0 20px 40px;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        max-width: 960px;
+        margin: 20px auto;
+    }
 
-  .event-details-layout {
-    padding: 0 20px 120px;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 24px;
-    max-width: 960px;
-    margin: 20px auto;
-  }
+    /* Ticket card appears first, below hero */
+    .ticket-card {
+        position: static !important;
+        width: 100% !important;
+        height: auto !important;
+        margin-top: 0 !important;
+        padding: 24px !important;
+        order: -1;
+    }
 
-  .event-details {
-    text-align: left;
-    padding: 0;
-  }
+    /* Event details appear after ticket card */
+    .event-details {
+        text-align: left;
+        padding: 0;
+        order: 1;
+    }
 
-  .event-title,
-  .location-title,
-  .description-title,
-  .bring-title {
-    text-align: left;
-  }
+    .event-title,
+    .location-title,
+    .description-title,
+    .bring-title {
+        text-align: left;
+    }
 
-  .event-hero {
-    margin: 48px auto 20px;
-    border-radius: 12px;
-    overflow: hidden;
-  }
+    .nav-actions {
+        gap: 16px;
+    }
 
-  .event-hero img {
-    height: 174px;
-    object-position: center;
-  }
+    .event-badge {
+        padding: 8px 16px;
+        font-size: 0.95rem;
+        margin-bottom: 18px;
+    }
 
-  .event-hero-title {
-    font-size: 22px;
-    line-height: 1.05;
-    left: 10%;
-    transform: translateX(0%) translateY(-50%);
-    text-align: left;
-    width: 80%;
-  }
+    .event-date,
+    .location-info,
+    .description,
+    .bring-list,
+    .recommended-list,
+    .not-allowed-list {
+        font-size: 0.98rem;
+    }
 
-  .ticket-card {
-    display: none !important;
-  }
+    .ticket-type-container {
+        width: 100%;
+        height: auto;
+        padding: 8px;
+        gap: 8px;
+        justify-content: space-between;
+        margin-bottom: 30px;
+    }
 
-  /* Mobile Sticky Footer */
-  .mobile-ticket-footer {
-    display: flex !important;
-    position: fixed !important;
-    bottom: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    background: #131316 !important;
-    padding: 16px 20px !important;
-    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5) !important;
-    z-index: 1000 !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-    gap: 16px !important;
-  }
+    .ticket-type {
+        flex: 1 1 auto;
+        padding: 10px;
+        height: 42px;
+        font-size: 0.9rem;
+    }
 
-  .footer-ticket-info {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
+    .description,
+    .bring-list,
+    .recommended-list,
+    .not-allowed-list {
+        margin-bottom: 20px;
+    }
 
-  .footer-ticket-price {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: white;
-  }
-
-  .footer-ticket-date {
-    font-size: 0.85rem;
-    color: #9AA4B2;
-  }
-
-  .footer-ticket-btn {
-    padding: 14px 32px;
-    background: #F04400;
-    border: none;
-    color: white;
-    font-weight: 600;
-    font-size: 1rem;
-    cursor: pointer;
-    border-radius: 4px;
-    white-space: nowrap;
-    transition: opacity 0.3s ease;
-  }
-
-  .footer-ticket-btn:hover {
-    opacity: 0.9;
-  }
-
-  .nav-actions {
-    gap: 16px;
-  }
-
-  .event-badge {
-    padding: 8px 16px;
-    font-size: 0.95rem;
-    margin-bottom: 18px;
-  }
-
-  .event-date,
-  .location-info,
-  .description,
-  .bring-list,
-  .recommended-list,
-  .not-allowed-list {
-    font-size: 0.98rem;
-  }
-
-  .ticket-type-container {
-    width: 100%;
-    height: auto;
-    padding: 8px;
-    gap: 8px;
-    justify-content: space-between;
-  }
-
-  .ticket-type {
-    flex: 1 1 auto;
-    padding: 10px;
-    height: 42px;
-  }
-
-  .description,
-  .bring-list,
-  .recommended-list,
-  .not-allowed-list {
-    margin-bottom: 20px;
-  }
-
-  .event-hero {
-    margin-top: 48px;
-  }
-
-  .nav-toggle {
-    display: flex !important;
-  }
+    .nav-toggle {
+        display: flex !important;
+    }
+    
+    .ticket-date {
+        text-align: left;
+        padding: 0;
+    }
+    
+    .ticket-note {
+        font-size: 0.95rem;
+    }
 }
 
 @media (max-width: 480px) {
+    .event-details-layout {
+        padding: 0 14px 40px;
+        gap: 18px;
+    }
 
-  .event-details-layout {
-    padding: 0 14px 120px;
-    gap: 18px;
-  }
+    .event-hero-title {
+        font-size: 18px;
+        left: 8%;
+        width: 84%;
+    }
 
-  .event-hero-title {
-    font-size: 18px;
-    left: 8%;
-    width: 84%;
-  }
+    .event-hero img {
+        height: 150px;
+    }
 
-  .event-hero img {
-    height: 150px;
-  }
+    .event-badge {
+        font-size: 0.95rem;
+        padding: 7px 14px;
+    }
 
-  .event-badge {
-    font-size: 0.95rem;
-    padding: 7px 14px;
-  }
+    .event-title {
+        font-size: 1.8rem;
+    }
 
-  .event-title {
-    font-size: 1.8rem;
-  }
-
-  .event-date,
-  .location-info {
-    font-size: 0.98rem;
-  }
-
-  .footer-ticket-price {
-    font-size: 1.25rem;
-  }
-
-  .footer-ticket-btn {
-    padding: 12px 24px;
-    font-size: 0.95rem;
-  }
+    .event-date,
+    .location-info {
+        font-size: 0.98rem;
+    }
+    
+    .ticket-card {
+        padding: 20px !important;
+    }
 }

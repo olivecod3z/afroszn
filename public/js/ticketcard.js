@@ -87,39 +87,55 @@ document.addEventListener('DOMContentLoaded', function() {
         const totalPrice = currentPrice * quantity;
         
         if (ticketPriceElement) {
-            // Update the price, keeping the /person text
-            ticketPriceElement.innerHTML = `$${totalPrice} <span>/person</span>`;
-            
+            // If quantity = 1, show simple price
+            if (quantity === 1) {
+                ticketPriceElement.innerHTML = `$${totalPrice} <span>/person</span>`;
+            } 
             // If quantity > 1, show total breakdown
-            if (quantity > 1) {
+            else {
                 ticketPriceElement.innerHTML = `$${totalPrice} <span>($${currentPrice} × ${quantity})</span>`;
             }
         }
     }
     
-    // ===== GET TICKETS BUTTON =====
+    // ===== GET TICKETS BUTTON - MOBILE vs DESKTOP =====
     const getTicketsBtn = document.querySelector('.ticket-btn');
     
     if (getTicketsBtn) {
         getTicketsBtn.addEventListener('click', function() {
             // Prepare ticket order data
             const orderData = {
+                eventName: 'AFRO SEASON<br>VOLUME 4',
+                eventDate: 'Friday October, 2025 — 10:00pm ACST',
+                eventImage: 'images/event_checkout.png',
                 ticketType: currentTicketType,
                 quantity: quantity,
-                pricePerTicket: currentPrice,
-                totalPrice: currentPrice * quantity
+                basePrice: currentPrice,
+                price: currentPrice * quantity
             };
             
-            // Log order data (you can replace this with actual checkout logic)
-            console.log('Order Details:', orderData);
+            // Check screen size
+            const isMobile = window.innerWidth <= 768;
             
-            // Show confirmation (replace with your actual checkout flow)
-            alert(`Adding ${quantity} ${currentTicketType} ticket(s) to cart\nTotal: $${orderData.totalPrice}`);
-            
-            // Here you would typically:
-            // 1. Add to cart
-            // 2. Navigate to checkout
-            // 3. Send data to backend
+            if (isMobile) {
+                // MOBILE: Navigate to checkout pages
+                sessionStorage.setItem('ticketType', currentTicketType);
+                sessionStorage.setItem('ticketQuantity', quantity);
+                sessionStorage.setItem('ticketPrice', currentPrice * quantity);
+                sessionStorage.setItem('basePrice', currentPrice);
+                sessionStorage.setItem('eventName', 'AFRO SEASON VOLUME 4');
+                sessionStorage.setItem('eventDate', 'Friday October, 2025 — 10:00pm ACST');
+                
+                window.location.href = 'checkout1.html';
+            } else {
+                // DESKTOP: Open modal
+                if (typeof checkoutFlow !== 'undefined') {
+                    checkoutFlow.showStep1(orderData);
+                } else {
+                    console.error('Checkout flow not loaded');
+                    alert(`Adding ${quantity} ${currentTicketType} ticket(s) to cart\nTotal: $${orderData.price}`);
+                }
+            }
         });
     }
     

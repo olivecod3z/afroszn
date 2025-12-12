@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Tickets - Afro Szn</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/checkout-mobile.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+</head>
+<body class="checkout-body">
+    <!-- Header -->
+    <header class="checkout-header">
+        <button class="back-btn" onclick="window.history.back()">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+        </button>
+        <h1 class="checkout-title">THE CALLOUT SHOW</h1>
+       <button class="close-btn" onclick="window.history.back()">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+     </button>
+    </header>
+
+    <!-- Content -->
+    <main class="checkout-main">
+        <!-- Date Header -->
+        <p class="event-date-text">Friday October, 2025, 8:30-10:30</p>
+
+        <!-- Ticket Selection -->
+        <div class="ticket-card">
+            <div class="ticket-header">
+                <span class="ticket-type-name">General Admission</span>
+                <div class="quantity-controls">
+                    <button class="qty-btn" id="decrease">−</button>
+                    <span class="qty-value" id="quantity">1</span>
+                    <button class="qty-btn" id="increase">+</button>
+                </div>
+            </div>
+            
+            <div class="ticket-info">
+                <p class="ticket-price" id="ticketPrice">$40</p>
+                <p class="ticket-remaining">Sales end October, 2025</p>
+            </div>
+        </div>
+
+        <!-- Get Ticket Button -->
+        <button class="primary-btn" onclick="window.location.href='checkout2.html'">
+            Get ticket
+        </button>
+    </main>
+
+    <script>
+        // Quantity controls
+        let quantity = 1;
+        const basePrice = 40;
+        
+        document.getElementById('decrease').addEventListener('click', function() {
+            if (quantity > 1) {
+                quantity--;
+                updateDisplay();
+            }
+        });
+        
+        document.getElementById('increase').addEventListener('click', function() {
+            if (quantity < 10) {
+                quantity++;
+                updateDisplay();
+            }
+        });
+        
+        function updateDisplay() {
+            document.getElementById('quantity').textContent = quantity;
+            document.getElementById('ticketPrice').textContent = '$' + (basePrice * quantity);
+            
+            // Save to sessionStorage for next page
+            sessionStorage.setItem('ticketQuantity', quantity);
+            sessionStorage.setItem('ticketPrice', basePrice * quantity);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billing Information - Afro Szn</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/checkout-mobile.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+</head>
+<body class="checkout-body">
+    <!-- Header -->
+    <header class="checkout-header">
+        <button class="back-btn" onclick="window.history.back()">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+        </button>
+        <h1 class="checkout-title">THE CALLOUT SHOW</h1>
+       <button class="close-btn" onclick="window.history.back()">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+    </header>
+
+    <!-- Content -->
+    <main class="checkout-main">
+      
+
+        <!-- Progress Steps -->
+        <div class="progress-steps">
+            <div class="step completed">1</div>
+            <div class="step-line"></div>
+            <div class="step active">2</div>
+            <div class="step-line"></div>
+            <div class="step">3</div>
+        </div>
+
+        <!-- Section Title -->
+        <h2 class="section-title">1. Billing information</h2>
+
+        <!-- Billing Form -->
+        <form id="billingForm" onsubmit="handleSubmit(event)">
+            <div class="form-group">
+                <label>First name</label>
+                <input type="text" name="firstName" required>
+            </div>
+
+            <div class="form-group">
+                <label>Last name</label>
+                <input type="text" name="lastName" required>
+            </div>
+
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label>Confirm Email</label>
+                <input type="email" name="confirmEmail" required>
+            </div>
+
+            <button type="submit" class="primary-btn">Confirm and pay</button>
+        </form>
+    </main>
+
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            const email = formData.get('email');
+            const confirmEmail = formData.get('confirmEmail');
+            
+            if (email !== confirmEmail) {
+                alert('Emails do not match');
+                return;
+            }
+            
+            // Save billing info
+            sessionStorage.setItem('firstName', formData.get('firstName'));
+            sessionStorage.setItem('lastName', formData.get('lastName'));
+            sessionStorage.setItem('email', email);
+            
+            // Navigate to payment page
+            window.location.href = 'checkout3.html';
+        }
+    </script>
+</body>
+</html>
