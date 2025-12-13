@@ -113,7 +113,7 @@
 }
 
 /* Ticket Card (Step 1) */
-.ticket-card {
+.ticket-card-mobile {
     background: #0D0D0D;
     border: 1px solid #F04400;
     padding: 40px 20px;
@@ -220,7 +220,7 @@
 }
 
 .form-group input::placeholder {
-    color: #0D0D0D;
+    color:  #9AA4B2;
 }
 
 .form-group select {
@@ -363,11 +363,70 @@
   color: white;  
   margin-left: -2px;
 } 
-/* .gpay-glyph {
-    width: 85px;  
-    height: auto;
-    display: block;
-} */
+/* Billing Address Section */
+.billing-section {
+    margin-top: 30px;
+}
+
+.section-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.address-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.address-row .form-input {
+    width: 100%;
+    padding: 14px 16px;
+    background: #0D0D0D;
+    border: 1px solid #2a2a2d;
+    color: white;
+    font-size: 1rem;
+    outline: none;
+}
+
+.address-row .form-input:focus {
+    border-color: #F04400;
+}
+
+.address-row .form-input::placeholder {
+    color: #9AA4B2;
+}
+
+.terms-checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.terms-checkbox input[type="checkbox"] {
+    margin-top: 3px;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.terms-checkbox label {
+    font-size: 0.9rem;
+    color: #9AA4B2;
+    line-height: 1.5;
+}
+
+.terms-checkbox a {
+    color: #9AA4B2;
+    text-decoration: underline;
+}
+
+
 
 
 /* Small Mobile Adjustments */

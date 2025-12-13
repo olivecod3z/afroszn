@@ -1,6 +1,3 @@
-/* ============================================
-   CHECKOUT MODAL - EXACT FIGMA MATCH
-   ============================================ */
 
 /* Blur background when modal is open */
 body.modal-open {
@@ -207,18 +204,6 @@ body.modal-open .footer {
     font-weight: 500;
     margin-bottom: 8px;
     font-family: 'Inter', sans-serif;
-}
-
-.form-group input {
-    width: 100%;
-    padding: 12px 14px;
-    background: #0D0D0D;
-    border: 1px solid #2a2a2d;
-    border-radius: 8px;
-    color: white;
-    font-size: 0.95rem;
-    font-family: 'Inter', sans-serif;
-    transition: border-color 0.3s ease;
 }
 
 .form-group input:focus {
