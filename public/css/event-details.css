@@ -215,7 +215,7 @@ body {
     padding: 0 20px;
     box-sizing: border-box;
     gap: 10px;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
 
 }
 
@@ -258,9 +258,14 @@ body {
 .ticket-note {
     color: #9AA4B2;
     font-size: 1.1rem;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     line-height: 1.4;
     font-weight: 500;
+}
+.counter-hint {
+    color: #9AA4B2;
+    margin-bottom: 10px;
+
 }
 /* Quantity Counter */
 .quantity-container {

@@ -6,7 +6,7 @@
         <title>Payment - Afro Szn</title>
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/checkout-mobile.css">
-        <link rel="stylesheet" href="css/validation-error.css">
+        <link rel="stylesheet" href="css/validation-errors.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
@@ -99,104 +99,58 @@
                     <span>Paypal</span>
                 </button>
             </div>
+            <!-- Payment buttons -->
+            <button class="primary-btn" id="stripeCheckoutBtn">Proceed with payment</button>
+            <button class="primary-btn" id="gpayBtn" style="display:none;">Continue with Google Pay</button>
+            <button class="primary-btn" id="applepayBtn" style="display:none;">Continue with Apple Pay</button>
+            <button class="primary-btn" id="paypalBtn" style="display:none;">Continue with PayPal</button>
 
-            <!-- Card Form -->
-            <form id="paymentForm" onsubmit="handlePayment(event)" style="display: block;" novalidate>    
-                <div class="form-group">
-                    <label>Cardholder's name</label>
-                    <input type="text" id="cardholderName" name="cardholderName" required>
-                    <span class="error-message" id="cardholderNameError"></span>
-                </div>
+            
 
-                <div class="form-group">
-                    <label>Card number</label>
-                    <input type="text" id="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" required>
-                    <span class="error-message" id="cardNumberError"></span>
-                </div>
+                <!-- <script src="js/payment-validation.js"></script> -->
+     <script>
+document.addEventListener('DOMContentLoaded', () => {
+    const paymentOptions = document.querySelectorAll('.payment-option');
 
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Expiration date</label>
-                        <input type="text" id="expiryDate" name="expiryDate" placeholder="MM/YY" maxlength="5" required>
-                        <span class="error-message" id="expiryDateError"></span>
-                    </div>
-                    <div class="form-group">
-                        <label>CVC</label>
-                        <input type="text" id="cvc" name="cvc" placeholder="123" maxlength="4" required>
-                        <span class="error-message" id="cvcError"></span>
-                    </div>
-                </div>
+    const stripeBtn = document.getElementById('stripeCheckoutBtn');
+    const gpayBtn = document.getElementById('gpayBtn');
+    const applepayBtn = document.getElementById('applepayBtn');
+    const paypalBtn = document.getElementById('paypalBtn');
 
-                <!-- Billing Address Section -->
-                <div class="billing-section">
-                    <h3 class="section-title">Billing address</h3>
-                    
-                    <!-- Country Dropdown -->
-                    <div class="form-group">
-                        <select class="form-input" id="country" name="country" required>
-                            <option value="">Select country</option>
-                            <option value="au">Australia</option>
-                            <option value="us">United States</option>
-                            <option value="uk">United Kingdom</option>
-                            <option value="ca">Canada</option>
-                        </select>
-                        <span class="error-message" id="countryError"></span>
-                    </div>
+    function hideAllButtons() {
+        if (stripeBtn) stripeBtn.style.display = 'none';
+        if (gpayBtn) gpayBtn.style.display = 'none';
+        if (applepayBtn) applepayBtn.style.display = 'none';
+        if (paypalBtn) paypalBtn.style.display = 'none';
+    }
 
-                    <!-- Address Input -->
-                    <div class="form-group">
-                        <input type="text" class="form-input" id="address" name="address" placeholder="Address" required>
-                        <span class="error-message" id="addressError"></span>
-                    </div>
+    paymentOptions.forEach(option => {
+        option.addEventListener('click', () => {
+            // Visual active state
+            paymentOptions.forEach(o => o.classList.remove('active'));
+            option.classList.add('active');
 
-                    <!-- City, State, Zipcode Row -->
-                    <div class="address-row">
-                        <div class="form-group-inline">
-                            <input type="text" class="form-input" id="city" name="city" placeholder="City" required>
-                            <span class="error-message" id="cityError"></span>
-                        </div>
-                        <div class="form-group-inline">
-                            <input type="text" class="form-input" id="state" name="state" placeholder="State" required>
-                            <span class="error-message" id="stateError"></span>
-                        </div>
-                        <div class="form-group-inline">
-                            <input type="text" class="form-input" id="zipcode" name="zipcode" placeholder="Zipcode" required>
-                            <span class="error-message" id="zipcodeError"></span>
-                        </div>
-                    </div>
+            // Radio sync
+            option.querySelector('input[type="radio"]').checked = true;
 
-                    <!-- Terms Checkbox -->
-                    <div class="terms-checkbox">
-                        <input type="checkbox" id="terms" name="terms" required>
-                        <label for="terms">
-                            I understand and accept <a href="#">Afroszn's Services Agreement</a>, which includes the <a href="#">Cancellation and Refund Policy</a>.
-                        </label>
-                    </div>
-                    <span class="error-message" id="termsError"></span>
-                </div>
+            const method = option.dataset.method;
 
-                <!-- General Error Message -->
-                <div id="formGeneralError" class="general-error-message"></div>
+            hideAllButtons();
 
-                <button type="submit" class="primary-btn" id="submitBtn">Confirm and pay</button>
-            </form>
+            if (method === 'card' && stripeBtn) stripeBtn.style.display = 'block';
+            if (method === 'gpay' && gpayBtn) gpayBtn.style.display = 'block';
+            if (method === 'applepay' && applepayBtn) applepayBtn.style.display = 'block';
+            if (method === 'paypal' && paypalBtn) paypalBtn.style.display = 'block';
+        });
+    });
 
-            <!-- Google Pay Button -->
-            <button class="primary-btn payment-continue-btn" id="gpayBtn" style="display: none;">
-                Continue with Google Pay
-            </button>
+    // Default state (Card)
+    hideAllButtons();
+    if (stripeBtn) stripeBtn.style.display = 'block';
+});
+</script>
 
-            <!-- Apple Pay Button -->
-            <button class="primary-btn payment-continue-btn" id="applepayBtn" style="display: none;">
-                Continue with Apple Pay
-            </button>
 
-            <!-- PayPal Button -->
-            <button class="primary-btn payment-continue-btn" id="paypalBtn" style="display: none;">
-                Continue with PayPal
-            </button>
-        </main>
 
-        <script src="js/payment-validation.js"></script>
     </body>
 </html>

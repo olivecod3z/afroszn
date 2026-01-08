@@ -1,4 +1,5 @@
 // checkout-flow.js - 3-Step Checkout Modal (Mobile & Desktop Ready)
+// Updated to use Stripe Checkout hosted page
 
 class CheckoutFlow {
     constructor() {
@@ -29,9 +30,7 @@ class CheckoutFlow {
                                 <div class="ticket-selection-header">
                                     <span>General Admission</span>
                                     <div class="quantity-controls-inline">
-                                        <button onclick="checkoutFlow.decreaseQuantity()">−</button>
                                         <span id="modalQuantity">${ticketData.quantity}</span>
-                                        <button onclick="checkoutFlow.increaseQuantity()">+</button>
                                     </div>
                                 </div>
                                 
@@ -121,7 +120,7 @@ class CheckoutFlow {
                                     </div>
                                 </div>
                                 
-                                <button type="submit" class="checkout-submit-btn">Confirm and pay</button>
+                                <button type="submit" class="checkout-submit-btn">Continue to payment</button>
                             </form>
                         </div>
                         
@@ -153,7 +152,7 @@ class CheckoutFlow {
         this.currentStep = 2;
     }
 
-    // ===== STEP 3: PAYMENT DETAILS =====
+    // ===== STEP 3: PAYMENT SELECTION =====
     showStep3() {
         const modalHTML = `
             <div class="checkout-modal-overlay" id="checkoutModal">
@@ -181,6 +180,7 @@ class CheckoutFlow {
                             <h2 class="checkout-heading section-title">Payment</h2>
                             
                             <div class="payment-methods">
+                                <!-- Credit/Debit Card Option -->
                                 <button class="payment-option active" data-method="card" type="button" onclick="checkoutFlow.selectPayment(this, 'card')">
                                     <input type="radio" name="payment" checked>
                                     <svg width="32" height="24" viewBox="0 0 32 24" fill="none" stroke="white" stroke-width="2">
@@ -190,6 +190,7 @@ class CheckoutFlow {
                                     <span>Credit or Debit card</span>
                                 </button>
 
+                                <!-- Google Pay Option -->
                                 <button class="payment-option" data-method="gpay" type="button" onclick="checkoutFlow.selectPayment(this, 'gpay')">
                                     <input type="radio" name="payment">
                                     <div class="logo-container gpay-split" style="display:flex;align-items:center;">
@@ -204,6 +205,7 @@ class CheckoutFlow {
                                     <span>Google pay</span>
                                 </button>
 
+                                <!-- Apple Pay Option -->
                                 <button class="payment-option" data-method="applepay" type="button" onclick="checkoutFlow.selectPayment(this, 'applepay')">
                                     <input type="radio" name="payment">
                                     <div class="logo-container apple-split" style="display:flex;align-items:center;gap:0px;">
@@ -217,6 +219,7 @@ class CheckoutFlow {
                                     <span>Apple pay</span>
                                 </button>
 
+                                <!-- PayPal Option -->
                                 <button class="payment-option" data-method="paypal" type="button" onclick="checkoutFlow.selectPayment(this, 'paypal')">
                                     <input type="radio" name="payment">
                                     <div class="logo-container">
@@ -233,94 +236,34 @@ class CheckoutFlow {
                                 </button>
                             </div>
                             
-                            <form id="paymentForm" onsubmit="checkoutFlow.handlePayment(event)" style="display: block;" novalidate>
-                                <div class="form-group">
-                                    <label>Cardholder's name</label>
-                                    <input type="text" id="cardholderName" name="cardholderName" required>
-                                    <span class="error-message" id="cardholderNameError"></span>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label>Card number</label>
-                                    <input type="text" id="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" required>
-                                    <span class="error-message" id="cardNumberError"></span>
-                                </div>
-                                
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label>Expiration date</label>
-                                        <input type="text" id="expiryDate" name="expiryDate" placeholder="MM/YY" maxlength="5" required>
-                                        <span class="error-message" id="expiryDateError"></span>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>CVC</label>
-                                        <input type="text" id="cvc" name="cvc" placeholder="123" maxlength="4" required>
-                                        <span class="error-message" id="cvcError"></span>
-                                    </div>
-                                </div>
+                            <!-- Payment Buttons Container -->
+                            <div class="payment-buttons-container">
+                                <!-- Stripe Checkout Button (for card) -->
+                               <button
+                                class="primary-btn payment-continue-btn"
+                                id="stripeCheckoutBtn"
+                                type="button"
+                                onclick="checkoutFlow.handlePayment()"
+                                >
+                                Proceed with payment
+                                </button>
 
-                                <div class="billing-section">
-                                    <h3 class="section-title">Billing address</h3>
-                                    
-                                    <div class="form-group">
-                                        <select class="form-input" id="country" name="country" required>
-                                            <option value="">Select country</option>
-                                            <option value="au">Australia</option>
-                                            <option value="us">United States</option>
-                                            <option value="uk">United Kingdom</option>
-                                            <option value="ca">Canada</option>
-                                        </select>
-                                        <span class="error-message" id="countryError"></span>
-                                    </div>
 
-                                    <div class="form-group">
-                                        <input type="text" class="form-input" id="address" name="address" placeholder="Address" required>
-                                        <span class="error-message" id="addressError"></span>
-                                    </div>
+                                <!-- Google Pay Button -->
+                                <button class="primary-btn payment-continue-btn" id="gpayBtn" style="display: none;" onclick="checkoutFlow.handlePayment('gpay')">
+                                    Continue with Google Pay
+                                </button>
 
-                                    <div class="address-row">
-                                        <div class="form-group-inline">
-                                            <input type="text" class="form-input" id="city" name="city" placeholder="City" required>
-                                            <span class="error-message" id="cityError"></span>
-                                        </div>
-                                        <div class="form-group-inline">
-                                            <input type="text" class="form-input" id="state" name="state" placeholder="State" required>
-                                            <span class="error-message" id="stateError"></span>
-                                        </div>
-                                        <div class="form-group-inline">
-                                            <input type="text" class="form-input" id="zipcode" name="zipcode" placeholder="Zipcode" required>
-                                            <span class="error-message" id="zipcodeError"></span>
-                                        </div>
-                                    </div>
+                                <!-- Apple Pay Button -->
+                                <button class="primary-btn payment-continue-btn" id="applepayBtn" style="display: none;" onclick="checkoutFlow.handlePayment('applepay')">
+                                    Continue with Apple Pay
+                                </button>
 
-                                    <div class="terms-checkbox">
-                                        <input type="checkbox" id="terms" name="terms" required>
-                                        <label for="terms">
-                                            I understand and accept <a href="#">Afroszn's Services Agreement</a>, which includes the <a href="#">Cancellation and Refund Policy</a>.
-                                        </label>
-                                    </div>
-                                    <span class="error-message" id="termsError"></span>
-                                </div>
-                                
-                                <div id="formGeneralError" class="general-error-message"></div>
-                                
-                                <button type="submit" class="primary-btn checkout-submit-btn">Confirm and pay</button>
-                            </form>
-
-                            <!-- Google Pay Button -->
-                            <button class="primary-btn payment-continue-btn" id="gpayBtn" style="display: none;">
-                                Continue with Google Pay
-                            </button>
-
-                            <!-- Apple Pay Button -->
-                            <button class="primary-btn payment-continue-btn" id="applepayBtn" style="display: none;">
-                                Continue with Apple Pay
-                            </button>
-
-                            <!-- PayPal Button -->
-                            <button class="primary-btn payment-continue-btn" id="paypalBtn" style="display: none;">
-                                Continue with PayPal
-                            </button>
+                                <!-- PayPal Button -->
+                                <button class="primary-btn payment-continue-btn" id="paypalBtn" style="display: none;" onclick="checkoutFlow.handlePayment('paypal')">
+                                    Continue with PayPal
+                                </button>
+                            </div>
                         </div>
                         
                         <div class="checkout-right">
@@ -350,14 +293,14 @@ class CheckoutFlow {
         this.addModalToPage(modalHTML);
         this.currentStep = 3;
         
-        // Add payment method switching functionality after modal is added
+        // Setup payment method switching
         this.setupPaymentMethodSwitching();
     }
 
     // ===== SETUP PAYMENT METHOD SWITCHING =====
     setupPaymentMethodSwitching() {
         const paymentOptions = document.querySelectorAll('.payment-option');
-        const cardForm = document.getElementById('paymentForm');
+        const stripeBtn = document.getElementById('stripeCheckoutBtn');
         const gpayBtn = document.getElementById('gpayBtn');
         const applepayBtn = document.getElementById('applepayBtn');
         const paypalBtn = document.getElementById('paypalBtn');
@@ -375,15 +318,15 @@ class CheckoutFlow {
                 
                 const paymentMethod = this.getAttribute('data-method');
                 
-                // Hide all payment forms first
-                if (cardForm) cardForm.style.display = 'none';
+                // Hide all buttons
+                if (stripeBtn) stripeBtn.style.display = 'none';
                 if (gpayBtn) gpayBtn.style.display = 'none';
                 if (applepayBtn) applepayBtn.style.display = 'none';
                 if (paypalBtn) paypalBtn.style.display = 'none';
                 
-                // Show the correct payment form
-                if (paymentMethod === 'card' && cardForm) {
-                    cardForm.style.display = 'block';
+                // Show the correct button
+                if (paymentMethod === 'card' && stripeBtn) {
+                    stripeBtn.style.display = 'block';
                 } else if (paymentMethod === 'gpay' && gpayBtn) {
                     gpayBtn.style.display = 'block';
                 } else if (paymentMethod === 'applepay' && applepayBtn) {
@@ -393,39 +336,6 @@ class CheckoutFlow {
                 }
             });
         });
-
-        // Handle payment button clicks for alternative methods
-        if (gpayBtn) gpayBtn.addEventListener('click', (e) => this.handlePayment(e));
-        if (applepayBtn) applepayBtn.addEventListener('click', (e) => this.handlePayment(e));
-        if (paypalBtn) paypalBtn.addEventListener('click', (e) => this.handlePayment(e));
-        
-        // Auto-format expiration date input
-        const expiryInput = document.querySelector('input[placeholder="MM/YY"]');
-        if (expiryInput) {
-            expiryInput.addEventListener('input', function(e) {
-                let value = e.target.value.replace(/\D/g, ''); // Remove non-digits
-                
-                // Add slash after 2 digits
-                if (value.length > 2) {
-                    value = value.slice(0, 2) + '/' + value.slice(2, 4);
-                }
-                
-                e.target.value = value;
-            });
-            
-            expiryInput.addEventListener('keydown', function(e) {
-                // Allow backspace to remove slash cleanly
-                if (e.key === 'Backspace') {
-                    let val = e.target.value;
-                    if (val.endsWith('/')) {
-                        e.target.value = val.slice(0, -1);
-                    }
-                }
-            });
-        }
-        
-        // Setup real-time validation for form fields
-        this.setupRealTimeValidation();
     }
 
     // ===== SELECT PAYMENT METHOD =====
@@ -454,234 +364,15 @@ class CheckoutFlow {
         this.showStep3();
     }
 
-    // ===== VALIDATION HELPERS =====
-    validators = {
-        cardholderName: (v) => !v || v.trim().length < 3 ? 'Please enter a valid cardholder name' : !/^[a-zA-Z\s]+$/.test(v) ? 'Name should only contain letters' : null,
-        
-        cardNumber: (v) => {
-            const c = v.replace(/\s/g, '');
-            if (!c) return 'Card number is required';
-            if (c.length < 13 || c.length > 19) return 'Card number must be 13-19 digits';
-            if (!/^\d+$/.test(c)) return 'Card number should only contain digits';
-            
-            // Luhn check
-            let sum = 0, even = false;
-            for (let i = c.length - 1; i >= 0; i--) {
-                let d = parseInt(c[i]);
-                if (even && (d *= 2) > 9) d -= 9;
-                sum += d;
-                even = !even;
-            }
-            return sum % 10 !== 0 ? 'Invalid card number' : null;
-        },
-        
-        expiryDate: (v) => {
-            if (!v) return 'Expiration date is required';
-            if (!/^\d{2}\/\d{2}$/.test(v)) return 'Format should be MM/YY';
-            const [m, y] = v.split('/').map(Number);
-            if (m < 1 || m > 12) return 'Invalid month (01-12)';
-            const now = new Date(), cy = now.getFullYear() % 100, cm = now.getMonth() + 1;
-            return y < cy || (y === cy && m < cm) ? 'Card has expired' : null;
-        },
-        
-        cvc: (v) => !v ? 'CVC is required' : !/^\d{3,4}$/.test(v) ? 'CVC must be 3 or 4 digits' : null,
-        country: (v) => !v ? 'Please select a country' : null,
-        address: (v) => !v || v.trim().length < 5 ? 'Please enter a valid address' : null,
-        city: (v) => !v || v.trim().length < 2 ? 'Please enter a valid city' : null,
-        state: (v) => !v || v.trim().length < 2 ? 'Please enter a valid state' : null,
-        zipcode: (v) => !v ? 'Zipcode is required' : v.length < 3 || v.length > 10 ? 'Please enter a valid zipcode' : null
-    };
-
-    showFieldError(fieldId, errorMessage) {
-        const field = document.getElementById(fieldId);
-        const errorSpan = document.getElementById(`${fieldId}Error`);
-        
-        if (field) {
-            field.classList.add('error');
-            field.setAttribute('aria-invalid', 'true');
-        }
-        
-        if (errorSpan) {
-            errorSpan.textContent = errorMessage;
-            errorSpan.style.display = 'block';
-        }
-    }
-
-    clearFieldError(fieldId) {
-        const field = document.getElementById(fieldId);
-        const errorSpan = document.getElementById(`${fieldId}Error`);
-        
-        if (field) {
-            field.classList.remove('error');
-            field.removeAttribute('aria-invalid');
-        }
-        
-        if (errorSpan) {
-            errorSpan.textContent = '';
-            errorSpan.style.display = 'none';
-        }
-    }
-
-    clearAllErrors() {
-        document.querySelectorAll('.error-message').forEach(msg => {
-            msg.textContent = '';
-            msg.style.display = 'none';
-        });
-        
-        document.querySelectorAll('.error').forEach(field => {
-            field.classList.remove('error');
-            field.removeAttribute('aria-invalid');
-        });
-        
-        const generalError = document.getElementById('formGeneralError');
-        if (generalError) {
-            generalError.textContent = '';
-            generalError.style.display = 'none';
-        }
-    }
-
-    validatePaymentForm() {
-        this.clearAllErrors();
-        let isValid = true;
-        let firstErrorField = null;
-
-        // Validate all fields using validators object
-        Object.keys(this.validators).forEach(fieldId => {
-            const value = document.getElementById(fieldId)?.value || '';
-            const error = this.validators[fieldId](value);
-            if (error) {
-                this.showFieldError(fieldId, error);
-                if (!firstErrorField) firstErrorField = document.getElementById(fieldId);
-                isValid = false;
-            }
-        });
-
-        // Validate terms checkbox
-        if (!document.getElementById('terms')?.checked) {
-            const termsError = document.getElementById('termsError');
-            if (termsError) {
-                termsError.textContent = 'You must accept the terms and conditions';
-                termsError.style.display = 'block';
-            }
-            if (!firstErrorField) firstErrorField = document.getElementById('terms');
-            isValid = false;
-        }
-
-        // Focus first error field
-        if (firstErrorField) {
-            firstErrorField.focus();
-            firstErrorField.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-
-        return isValid;
-    }
-
-    setupRealTimeValidation() {
-        // Card number
-        const cn = document.getElementById('cardNumber');
-        if (cn) {
-            cn.addEventListener('input', e => e.target.value = e.target.value.replace(/\s/g, '').match(/.{1,4}/g)?.join(' ') || e.target.value);
-            cn.addEventListener('blur', () => {
-                const err = this.validators.cardNumber(cn.value);
-                err ? this.showFieldError('cardNumber', err) : this.clearFieldError('cardNumber');
-            });
-            cn.addEventListener('focus', () => this.clearFieldError('cardNumber'));
-        }
-
-        // CVC
-        const cvc = document.getElementById('cvc');
-        if (cvc) {
-            cvc.addEventListener('input', e => e.target.value = e.target.value.replace(/\D/g, ''));
-            cvc.addEventListener('blur', () => {
-                const err = this.validators.cvc(cvc.value);
-                err ? this.showFieldError('cvc', err) : this.clearFieldError('cvc');
-            });
-            cvc.addEventListener('focus', () => this.clearFieldError('cvc'));
-        }
-
-        // Expiry date
-        const exp = document.getElementById('expiryDate');
-        if (exp) {
-            exp.addEventListener('blur', () => {
-                const err = this.validators.expiryDate(exp.value);
-                err ? this.showFieldError('expiryDate', err) : this.clearFieldError('expiryDate');
-            });
-            exp.addEventListener('focus', () => this.clearFieldError('expiryDate'));
-        }
-
-        // Cardholder name
-        const name = document.getElementById('cardholderName');
-        if (name) {
-            name.addEventListener('blur', () => {
-                const err = this.validators.cardholderName(name.value);
-                err ? this.showFieldError('cardholderName', err) : this.clearFieldError('cardholderName');
-            });
-            name.addEventListener('focus', () => this.clearFieldError('cardholderName'));
-        }
-
-        // Clear errors on focus for other fields
-        ['country', 'address', 'city', 'state', 'zipcode'].forEach(fieldId => {
-            const field = document.getElementById(fieldId);
-            if (field) field.addEventListener('focus', () => this.clearFieldError(fieldId));
-        });
-    }
-
     // ===== HANDLE PAYMENT =====
-    async handlePayment(e) {
-        e.preventDefault();
-        
-        // If using alternative payment method, skip form validation
-        const paymentMethod = this.orderData.paymentMethod || 'card';
-        
-        if (paymentMethod !== 'card') {
-            // Handle alternative payment methods
-            const submitBtn = e.target;
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Processing...';
-            
-            try {
-                console.log('Processing payment with:', paymentMethod);
-                await new Promise(resolve => setTimeout(resolve, 2000));
-                this.close();
-                alert('Payment successful! Tickets will be sent to ' + this.orderData.email);
-            } catch (error) {
-                console.error('Payment error:', error);
-                alert('Payment failed. Please try again.');
-                submitBtn.disabled = false;
-                submitBtn.textContent = e.target.textContent.replace('Processing...', 'Continue with');
-            }
-            return;
-        }
-        
-        // Validate card payment form
-        if (!this.validatePaymentForm()) {
-            return;
-        }
-        
-        const submitBtn = document.querySelector('.checkout-submit-btn');
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Processing...';
-        
-        try {
-            console.log('Processing payment:', this.orderData);
-            await new Promise(resolve => setTimeout(resolve, 2000));
-            this.close();
-            alert('Payment successful! Tickets will be sent to ' + this.orderData.email);
-        } catch (error) {
-            console.error('Payment error:', error);
-            
-            const generalError = document.getElementById('formGeneralError');
-            if (generalError) {
-                generalError.textContent = 'Payment failed. Please check your details and try again.';
-                generalError.style.display = 'block';
-            }
-            
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'Confirm and pay';
-        }
-    }
+// ===== HANDLE PAYMENT =====
+handlePayment() {
+    // 🔗 Stripe hosted Checkout link
+    window.location.href = "https://buy.stripe.com/test_00w14o82T3Lk3esdcL3Ru01";
+}
 
-    // ===== QUANTITY CONTROLS =====
+
+    // QUANTITY CONTROLS
     increaseQuantity() {
         this.orderData.quantity++;
         this.orderData.price = this.orderData.basePrice * this.orderData.quantity;

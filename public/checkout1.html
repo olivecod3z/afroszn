@@ -19,7 +19,7 @@
                 <path d="M19 12H5M12 19l-7-7 7-7"/>
             </svg>
         </button>
-        <h1 class="checkout-title">THE CALLOUT SHOW</h1>
+        <h1 class="checkout-title" id="eventTitle">THE CALLOUT SHOW</h1>
        <button class="close-btn" onclick="window.history.back()">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
                 <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -31,16 +31,14 @@
     <!-- Content -->
     <main class="checkout-main">
         <!-- Date Header -->
-        <p class="event-date-text">Friday October, 2025, 8:30-10:30</p>
+        <p class="event-date-text" id="eventDate">Friday October, 2025, 8:30-10:30</p>
 
         <!-- Ticket Selection -->
         <div class="ticket-card-mobile">
             <div class="ticket-header">
-                <span class="ticket-type-name">General Admission</span>
+                <span class="ticket-type-name" id="ticketTypeName">General Admission</span>
                 <div class="quantity-controls">
-                    <button class="qty-btn" id="decrease">−</button>
                     <span class="qty-value" id="quantity">1</span>
-                    <button class="qty-btn" id="increase">+</button>
                 </div>
             </div>
             
@@ -51,38 +49,66 @@
         </div>
 
         <!-- Get Ticket Button -->
-        <button class="primary-btn" onclick="window.location.href='checkout2.html'">
+        <button class="primary-btn" id="getTicketBtn">
             Get ticket
         </button>
     </main>
 
-    <script>
-        // Quantity controls
-        let quantity = 1;
-        const basePrice = 40;
-        
-        document.getElementById('decrease').addEventListener('click', function() {
-            if (quantity > 1) {
-                quantity--;
-                updateDisplay();
-            }
-        });
-        
-        document.getElementById('increase').addEventListener('click', function() {
-            if (quantity < 10) {
-                quantity++;
-                updateDisplay();
-            }
-        });
-        
-        function updateDisplay() {
-            document.getElementById('quantity').textContent = quantity;
-            document.getElementById('ticketPrice').textContent = '$' + (basePrice * quantity);
-            
-            // Save to sessionStorage for next page
-            sessionStorage.setItem('ticketQuantity', quantity);
-            sessionStorage.setItem('ticketPrice', basePrice * quantity);
-        }
-    </script>
+   <script>
+  // Load ticket data from sessionStorage
+  const ticketData = JSON.parse(sessionStorage.getItem("ticketData") || "{}");
+
+  // ✅ FIXED INITIALIZATION (NO HARDCODED PRICE FALLBACK)
+  let quantity = Number(ticketData.quantity) || 1;
+  let basePrice = Number(ticketData.basePrice);
+  let ticketType = ticketData.ticketType || "General Admission";
+
+  // Safety check (optional but recommended)
+  if (!basePrice || isNaN(basePrice)) {
+    console.error("Invalid basePrice from sessionStorage:", ticketData.basePrice);
+  }
+
+  // Update page with loaded data
+  function initializePage() {
+    if (ticketData.eventName) {
+      document.getElementById("eventTitle").textContent = ticketData.eventName;
+    }
+
+    if (ticketData.eventDate) {
+      document.getElementById("eventDate").textContent = ticketData.eventDate;
+    }
+
+    if (ticketData.ticketType) {
+      document.getElementById("ticketTypeName").textContent = ticketData.ticketType;
+    }
+
+    updateDisplay();
+  }
+
+  function updateDisplay() {
+    document.getElementById("quantity").textContent = quantity;
+    document.getElementById("ticketPrice").textContent =
+      "$" + (basePrice * quantity);
+
+    // Persist updated values
+    ticketData.quantity = quantity;
+    ticketData.price = basePrice * quantity;
+
+    sessionStorage.setItem("ticketData", JSON.stringify(ticketData));
+  }
+
+  // Get ticket button
+  document.getElementById("getTicketBtn").addEventListener("click", function () {
+    ticketData.quantity = quantity;
+    ticketData.price = basePrice * quantity;
+
+    sessionStorage.setItem("ticketData", JSON.stringify(ticketData));
+    window.location.href = "checkout2.html";
+  });
+
+  // Initialize page on load
+  initializePage();
+</script>
+
 </body>
 </html>

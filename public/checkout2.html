@@ -18,22 +18,24 @@
                 <path d="M19 12H5M12 19l-7-7 7-7"/>
             </svg>
         </button>
-        <h1 class="checkout-title">THE CALLOUT SHOW</h1>
-       <button class="close-btn" onclick="window.history.back()">
+        <h1 class="checkout-title" id="eventTitle">THE CALLOUT SHOW</h1>
+        <a href="cart.html" class="cart-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-                <line x1="18" y1="6" x2="6" y2="18"></line>
-                <line x1="6" y1="6" x2="18" y2="18"></line>
+                <circle cx="9" cy="21" r="1"></circle>
+                <circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
             </svg>
-        </button>
+        </a>
     </header>
 
     <!-- Content -->
     <main class="checkout-main">
-      
+        <!-- Date Header -->
+        <p class="event-date-text" id="eventDate">Friday October, 2025, 8:30-10:30</p>
 
         <!-- Progress Steps -->
         <div class="progress-steps">
-            <div class="step completed">1</div>
+            <div class="step completed">✓</div>
             <div class="step-line"></div>
             <div class="step active">2</div>
             <div class="step-line"></div>
@@ -41,51 +43,68 @@
         </div>
 
         <!-- Section Title -->
-        <h2 class="section-title">1. Billing information</h2>
+        <h2 class="section-title">Billing information</h2>
 
         <!-- Billing Form -->
-        <form id="billingForm" onsubmit="handleSubmit(event)">
-            <div class="form-group">
-                <label>First name</label>
-                <input type="text" name="firstName" required>
+        <form id="billingForm" onsubmit="handleBillingSubmit(event)">
+            <div class="form-row">
+                <div class="form-group">
+                    <label>First name</label>
+                    <input type="text" name="firstName" required>
+                </div>
+                <div class="form-group">
+                    <label>Last name</label>
+                    <input type="text" name="lastName" required>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label>Last name</label>
-                <input type="text" name="lastName" required>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label>Confirm Email</label>
+                    <input type="email" name="confirmEmail" required>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label>Email</label>
-                <input type="email" name="email" required>
-            </div>
-
-            <div class="form-group">
-                <label>Confirm Email</label>
-                <input type="email" name="confirmEmail" required>
-            </div>
-
-            <button type="submit" class="primary-btn">Confirm and pay</button>
+            <button type="submit" class="primary-btn">Continue to payment</button>
         </form>
     </main>
 
     <script>
-        function handleSubmit(event) {
+        // Load ticket data
+        let ticketData = JSON.parse(sessionStorage.getItem('ticketData') || '{}');
+        
+        // Update page with data
+        if (ticketData.eventName) {
+            document.getElementById('eventTitle').textContent = ticketData.eventName;
+        }
+        if (ticketData.eventDate) {
+            document.getElementById('eventDate').textContent = ticketData.eventDate;
+        }
+        
+        function handleBillingSubmit(event) {
             event.preventDefault();
             
             const formData = new FormData(event.target);
             const email = formData.get('email');
             const confirmEmail = formData.get('confirmEmail');
             
+            // Validate emails match
             if (email !== confirmEmail) {
                 alert('Emails do not match');
                 return;
             }
             
-            // Save billing info
-            sessionStorage.setItem('firstName', formData.get('firstName'));
-            sessionStorage.setItem('lastName', formData.get('lastName'));
-            sessionStorage.setItem('email', email);
+            // Save billing info to ticketData
+            ticketData.firstName = formData.get('firstName');
+            ticketData.lastName = formData.get('lastName');
+            ticketData.email = email;
+            
+            // Save to sessionStorage
+            sessionStorage.setItem('ticketData', JSON.stringify(ticketData));
             
             // Navigate to payment page
             window.location.href = 'checkout3.html';

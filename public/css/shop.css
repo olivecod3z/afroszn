@@ -1,0 +1,175 @@
+/* Header Section */
+.header-section {
+    padding: 110px 114px 50px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.page-heading {
+    font-weight: 700;
+    font-family: 'Inter', sans-serif;
+    font-size: 2rem;
+    color: #FFFFFF;
+    padding-bottom: 20px;
+}
+
+.merch-sub {
+    color: #9AA4B2;
+    font-weight: 500;
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Merch Section */
+.merch-section {
+    padding: 10px 20px;
+    position: relative; 
+    overflow: hidden;
+}
+
+.merch-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+
+/* Merch Grid */
+.merch-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.merch-grid a {
+    text-decoration: none;
+}
+
+/* Merch Card */
+.merch-card {
+    background: #131316;
+    overflow: hidden;
+    height: 394px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.merch-card:hover {
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+}
+
+/* Merch Image */
+.merch-image {
+    width: 100%;
+    height: 314px;
+    overflow: hidden;
+    background: #1a1a1d;
+}
+
+.merch-image img,
+.merch-image video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.merch-card:hover .merch-image img {
+    transform: scale(1.05);
+}
+
+/* Merch Details */
+.merch-details {
+    padding: 10px 24px;
+    text-align: center;
+}
+
+.merch-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #9AA4B2;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.merch-price {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .header-section {
+        padding: 80px 20px 30px;
+        text-align: center;
+    }
+
+    .page-heading {
+        font-size: 1.75rem;
+        text-align: center;
+    }
+
+    /* Hide subtitle on mobile */
+    .merch-sub {
+        display: none;
+    }
+
+    .merch-section {
+        padding: 20px 20px;
+    }
+
+    /* 2 cards per row on mobile */
+    .merch-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        margin-bottom: 40px;
+    }
+
+    .merch-card {
+        height: 350px;
+    }
+
+    .merch-image {
+        height: 280px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-section {
+        padding: 70px 15px 20px;
+    }
+
+    .page-heading {
+        font-size: 1.5rem;
+        line-height: 1.3;
+    }
+
+    .merch-section {
+        padding: 15px 15px;
+    }
+
+    .merch-grid {
+        gap: 15px;
+    }
+
+    .merch-card {
+        height: 320px;
+    }
+
+    .merch-image {
+        height: 250px;
+    }
+
+    .merch-title {
+        font-size: 0.9rem;
+    }
+
+    .merch-price {
+        font-size: 0.95rem;
+    }
+}

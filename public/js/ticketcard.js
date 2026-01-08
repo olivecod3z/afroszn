@@ -98,17 +98,24 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
+    // Format ticket type for display
+    function formatTicketType(type) {
+        return type.split(' ').map(word => 
+            word.charAt(0).toUpperCase() + word.slice(1)
+        ).join(' ');
+    }
+    
     // ===== GET TICKETS BUTTON - MOBILE vs DESKTOP =====
     const getTicketsBtn = document.querySelector('.ticket-btn');
     
     if (getTicketsBtn) {
         getTicketsBtn.addEventListener('click', function() {
-            // Prepare ticket order data
+            // Prepare complete ticket order data
             const orderData = {
-                eventName: 'AFRO SEASON<br>VOLUME 4',
-                eventDate: 'Friday October, 2025 — 10:00pm ACST',
+                eventName: 'AFRO SEASON VOLUME 4',
+                eventDate: 'Friday, October 2025, 10:00pm ACST',
                 eventImage: 'images/event_checkout.png',
-                ticketType: currentTicketType,
+                ticketType: formatTicketType(currentTicketType),
                 quantity: quantity,
                 basePrice: currentPrice,
                 price: currentPrice * quantity
@@ -118,14 +125,18 @@ document.addEventListener('DOMContentLoaded', function() {
             const isMobile = window.innerWidth <= 768;
             
             if (isMobile) {
-                // MOBILE: Navigate to checkout pages
-                sessionStorage.setItem('ticketType', currentTicketType);
+                // MOBILE: Save complete data as single object for consistency
+                sessionStorage.setItem('ticketData', JSON.stringify(orderData));
+                
+                // Also save individual items for backward compatibility
+                sessionStorage.setItem('ticketType', formatTicketType(currentTicketType));
                 sessionStorage.setItem('ticketQuantity', quantity);
                 sessionStorage.setItem('ticketPrice', currentPrice * quantity);
                 sessionStorage.setItem('basePrice', currentPrice);
-                sessionStorage.setItem('eventName', 'AFRO SEASON VOLUME 4');
-                sessionStorage.setItem('eventDate', 'Friday October, 2025 — 10:00pm ACST');
+                sessionStorage.setItem('eventName', orderData.eventName);
+                sessionStorage.setItem('eventDate', orderData.eventDate);
                 
+                // Navigate to checkout
                 window.location.href = 'checkout1.html';
             } else {
                 // DESKTOP: Open modal
@@ -133,7 +144,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     checkoutFlow.showStep1(orderData);
                 } else {
                     console.error('Checkout flow not loaded');
-                    alert(`Adding ${quantity} ${currentTicketType} ticket(s) to cart\nTotal: $${orderData.price}`);
+                    // Fallback: save to session and redirect
+                    sessionStorage.setItem('ticketData', JSON.stringify(orderData));
+                    window.location.href = 'checkout1.html';
                 }
             }
         });
@@ -141,4 +154,11 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize price display
     updatePriceDisplay();
+    
+    // Log ticket data for debugging (remove in production)
+    console.log('Ticket card initialized:', {
+        currentType: currentTicketType,
+        currentPrice: currentPrice,
+        quantity: quantity
+    });
 });

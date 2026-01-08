@@ -6,7 +6,7 @@ body {
 .header-section {
     
     padding: 110px 114px 50px;
-     position: relative;
+    position: relative;
     overflow: hidden;
     z-index: 1;
 }
