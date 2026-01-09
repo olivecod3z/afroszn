@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Cancelled - Afro Szn</title>
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+        .cancel-container {
+            max-width: 600px;
+            margin: 100px auto;
+            padding: 40px;
+            text-align: center;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        .cancel-icon {
+            font-size: 80px;
+            color: #dc3545;
+            margin-bottom: 20px;
+        }
+        .cancel-title {
+            font-size: 32px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .cancel-message {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        .retry-btn, .home-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            margin: 10px;
+        }
+        .retry-btn { background: #007bff; }
+        .home-btn { background: #6c757d; }
+    </style>
+</head>
+<body>
+    <div class="cancel-container">
+        <div class="cancel-icon">✕</div>
+        <h1 class="cancel-title">Payment Cancelled</h1>
+        <p class="cancel-message">Your payment was cancelled. No charges were made.</p>
+        
+        <a href="javascript:history.back()" class="retry-btn">Try Again</a>
+        <a href="index.html" class="home-btn">Back to Home</a>
+    </div>
+</body>
+</html>

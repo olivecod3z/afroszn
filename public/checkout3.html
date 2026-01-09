@@ -1,156 +1,198 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Payment - Afro Szn</title>
-        <link rel="stylesheet" href="css/main.css">
-        <link rel="stylesheet" href="css/checkout-mobile.css">
-        <link rel="stylesheet" href="css/validation-errors.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-    </head>
-    <body class="checkout-body">
-        <!-- Header -->
-        <header class="checkout-header">
-            <button class="back-btn" onclick="window.history.back()">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-                    <path d="M19 12H5M12 19l-7-7 7-7"/>
-                </svg>
-            </button>
-            <h1 class="checkout-title">THE CALLOUT SHOW</h1>
-            <a href="cart.html" class="cart-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-                    <circle cx="9" cy="21" r="1"></circle>
-                    <circle cx="20" cy="21" r="1"></circle>
-                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                </svg>
-            </a>
-        </header>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - Afro Szn</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/checkout-mobile.css">
+    <link rel="stylesheet" href="css/validation-errors.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+</head>
+<body class="checkout-body">
+    <!-- Header -->
+    <header class="checkout-header">
+        <button class="back-btn" onclick="window.history.back()">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+        </button>
+        <h1 class="checkout-title">AFRO SEASON VOLUME 4</h1>
+        <a href="cart.html" class="cart-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle>
+                <circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
+        </a>
+    </header>
 
-        <!-- Content -->
-        <main class="checkout-main">
-            <!-- Date Header -->
-            <p class="event-date-text">Friday October, 2025, 8:30-10:30</p>
+    <!-- Content -->
+    <main class="checkout-main">
+        <!-- Date Header -->
+        <p class="event-date-text">Friday October, 2025, 8:30-10:30</p>
 
-            <!-- Progress Steps -->
-            <div class="progress-steps">
-                <div class="step completed">✓</div>
-                <div class="step-line"></div>
-                <div class="step completed">✓</div>
-                <div class="step-line"></div>
-                <div class="step active">3</div>
-            </div>
+        <!-- Progress Steps -->
+        <div class="progress-steps">
+            <div class="step completed">✓</div>
+            <div class="step-line"></div>
+            <div class="step completed">✓</div>
+            <div class="step-line"></div>
+            <div class="step active">3</div>
+        </div>
 
-            <!-- Section Title -->
-            <h2 class="section-title">Payment</h2>
-
-            <!-- Payment Methods -->
-            <div class="payment-methods">
-                <button class="payment-option active" data-method="card">
-                    <input type="radio" name="payment" checked>
-                    <svg width="32" height="24" viewBox="0 0 32 24" fill="none" stroke="white" stroke-width="2">
-                        <rect x="2" y="4" width="28" height="16" rx="2" ry="2"></rect>
-                        <line x1="2" y1="10" x2="30" y2="10"></line>
+        <!-- Section Title -->
+        <div class="section-header">
+            <h2 class="section-title">Payment Method</h2>
+            <p class="section-subtitle">Choose how you'd like to pay</p>
+        </div>
+        <!-- Payment Methods -->
+       
+        <div class="payment-options">
+            <!-- Card Option -->
+            <div class="payment-option">
+                <input type="radio" id="card" name="payment" checked>
+                <label for="card">
+                <div class="option-content">
+                    <div class="radio-circle"></div>
+                    <div class="icon-container">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
+                        <line x1="1" y1="10" x2="23" y2="10"/>
                     </svg>
-                    <span>Credit or Debit card</span>
-                </button>
-
-                <button class="payment-option" data-method="gpay">
-                    <input type="radio" name="payment">
-                    <div class="logo-container gpay-split" style="display:flex;align-items:center;">
-                        <svg class="gpay-glyph" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41 17" aria-hidden="true">
-                            <path d="M19.526 2.635v4.083h2.518c.6 0 1.096-.202 1.488-.605.403-.402.605-.882.605-1.437 0-.544-.202-1.018-.605-1.422-.392-.413-.888-.62-1.488-.62h-2.518zm0 5.52v4.736h-1.504V1.198h3.99c1.013 0 1.873.337 2.582 1.012.72.675 1.08 1.497 1.08 2.466 0 .991-.36 1.819-1.08 2.482-.697.665-1.559.996-2.583.996h-2.485v.001zm7.668 2.287c0 .392.166.718.499.98.332.26.722.391 1.168.391.633 0 1.196-.234 1.692-.7.497-.469.744-1.019.744-1.65-.469-.37-1.123-.555-1.962-.555-.61 0-1.12.148-1.528.442-.409.294-.613.657-.613 1.092m1.946-5.815c1.112 0 1.989.297 2.633.89.642.594.964 1.408.964 2.442v4.932h-1.439v-1.11h-.065c-.622.914-1.45 1.372-2.486 1.372-.882 0-1.621-.262-2.215-.784-.594-.523-.891-1.176-.891-1.96 0-.828.313-1.486.94-1.976s1.463-.735 2.51-.735c.892 0 1.629.163 2.206.49v-.344c0-.522-.207-.966-.621-1.33a2.132 2.132 0 0 0-1.455-.547c-.84 0-1.504.353-1.995 1.062l-1.324-.834c.73-1.045 1.812-1.568 3.238-1.568m11.853.262l-5.02 11.53H34.42l1.864-4.034-3.302-7.496h1.635l2.387 5.749h.033l2.322-5.75z" fill="#5F6368"/>
-                            <path d="M13.448 7.134c0-.473-.04-.93-.116-1.366H6.988v2.588h3.634a3.11 3.11 0 0 1-1.344 2.042v1.68h2.169c1.27-1.17 2.001-2.9 2.001-4.944" fill="#4285F4"/>
-                            <path d="M6.988 13.7c1.816 0 3.344-.595 4.459-1.621l-2.169-1.681c-.603.406-1.38.643-2.29.643-1.754 0-3.244-1.182-3.776-2.774H.978v1.731a6.728 6.728 0 0 0 6.01 3.703" fill="#34A853"/>
-                            <path d="M3.212 8.267a4.034 4.034 0 0 1 0-2.572V3.964H.978a6.678 6.678 0 0 0 0 6.034l2.234-1.731z" fill="#FABB05"/>
-                            <path d="M6.988 2.921c.992 0 1.88.34 2.58 1.008v.001l1.92-1.918C10.324.928 8.804.262 6.989.262a6.728 6.728 0 0 0-6.01 3.702l2.234 1.731c.532-1.592 2.022-2.774 3.776-2.774" fill="#E94235"/>
-                        </svg>
                     </div>
-                    <span>Google pay</span>
-                </button>
-
-                <button class="payment-option" data-method="applepay">
-                    <input type="radio" name="payment">
-                    <div class="logo-container apple-split" style="display:flex;align-items:center;gap:0px;">
-                        <svg viewBox="0 0 24 24" class="apple-glyph" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="white" role="img">
-                            <title>Apple</title>
-                            <path d="M9.5 3.5c.6-.7 1-1.7.9-2.7-.9 0-1.9.6-2.5 1.3-.5.6-1 1.6-.9 2.6 1 .1 2-.5 2.5-1.2z"/>
-                            <path d="M10.1 6c-1.4 0-2.5.8-3.2.8s-1.7-.8-2.8-.8c-1.4 0-2.8.9-3.5 2.1-1.5 2.6-.4 6.4 1.1 8.5.7 1 1.5 2.2 2.7 2.1 1.1 0 1.5-.7 2.8-.7s1.6.7 2.8.7c1.2 0 1.9-1 2.6-2.1.8-1.2 1.1-2.3 1.2-2.4 0 0-2.3-.9-2.3-3.5 0-2.2 1.8-3.2 1.9-3.3-1-1.5-2.7-1.7-3.3-1.7z"/>
+                    <div class="text-content">
+                    <div class="option-title">Card</div>
+                    <div class="option-description">Pay with debit or credit card</div>
+                    <div class="badges">
+                        <span class="badge">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
                         </svg>
-                        <span class="apple-pay-text" style="font-family:SF Pro Display,-apple-system,sans-serif;">Pay</span>
-                    </div>
-                    <span>Apple pay</span>
-                </button>
-
-                <button class="payment-option" data-method="paypal">
-                    <input type="radio" name="payment">
-                    <div class="logo-container">
-                        <svg width="80" height="22" viewBox="0 0 124 33" fill="none">
-                            <path d="M46.211 6.749h-6.839a.95.95 0 0 0-.939.802l-2.766 17.537a.57.57 0 0 0 .564.658h3.265a.95.95 0 0 0 .939-.803l.746-4.73a.95.95 0 0 1 .938-.803h2.165c4.505 0 7.105-2.18 7.784-6.5.306-1.89.013-3.375-.872-4.415-.972-1.142-2.696-1.746-4.985-1.746zm.789 6.405c-.374 2.454-2.249 2.454-4.062 2.454h-1.032l.724-4.583a.57.57 0 0 1 .563-.481h.473c1.235 0 2.4 0 3.002.704.359.423.468 1.058.332 1.906zM66.654 13.075h-3.275a.57.57 0 0 0-.563.481l-.145.916-.229-.332c-.709-1.029-2.29-1.373-3.868-1.373-3.619 0-6.71 2.741-7.312 6.586-.313 1.918.132 3.752 1.22 5.031.998 1.176 2.426 1.666 4.125 1.666 2.916 0 4.533-1.875 4.533-1.875l-.146.91a.57.57 0 0 0 .562.66h2.95a.95.95 0 0 0 .939-.803l1.77-11.209a.568.568 0 0 0-.561-.658zm-4.565 6.374c-.316 1.871-1.801 3.127-3.695 3.127-.951 0-1.711-.305-2.199-.883-.484-.574-.668-1.391-.514-2.301.295-1.855 1.805-3.152 3.67-3.152.93 0 1.686.309 2.184.892.499.589.697 1.411.554 2.317zM84.096 13.075h-3.291a.954.954 0 0 0-.787.417l-4.539 6.686-1.924-6.425a.953.953 0 0 0-.912-.678h-3.234a.57.57 0 0 0-.541.754l3.625 10.638-3.408 4.811a.57.57 0 0 0 .465.9h3.287a.949.949 0 0 0 .781-.408l10.946-15.8a.57.57 0 0 0-.468-.895z" fill="#253B80"/>
-                            <path d="M94.992 6.749h-6.84a.95.95 0 0 0-.938.802l-2.766 17.537a.569.569 0 0 0 .562.658h3.51a.665.665 0 0 0 .656-.562l.785-4.971a.95.95 0 0 1 .938-.803h2.164c4.506 0 7.105-2.18 7.785-6.5.307-1.89.013-3.375-.873-4.415-.971-1.142-2.694-1.746-4.983-1.746zm.789 6.405c-.373 2.454-2.248 2.454-4.062 2.454h-1.031l.725-4.583a.568.568 0 0 1 .562-.481h.473c1.234 0 2.4 0 3.002.704.359.423.467 1.058.331 1.906zM115.434 13.075h-3.273a.567.567 0 0 0-.562.481l-.145.916-.23-.332c-.709-1.029-2.289-1.373-3.867-1.373-3.619 0-6.709 2.741-7.311 6.586-.312 1.918.131 3.752 1.219 5.031 1 1.176 2.426 1.666 4.125 1.666 2.916 0 4.533-1.875 4.533-1.875l-.146.91a.57.57 0 0 0 .564.66h2.949a.95.95 0 0 0 .938-.803l1.771-11.209a.571.571 0 0 0-.565-.658zm-4.565 6.374c-.314 1.871-1.801 3.127-3.695 3.127-.949 0-1.711-.305-2.199-.883-.484-.574-.666-1.391-.514-2.301.297-1.855 1.805-3.152 3.67-3.152.93 0 1.686.309 2.184.892.501.589.699 1.411.554 2.317zM119.295 7.23l-2.807 17.858a.569.569 0 0 0 .562.658h2.822c.469 0 .867-.34.939-.803l2.768-17.536a.57.57 0 0 0-.562-.659h-3.16a.571.571 0 0 0-.562.482z" fill="#179BD7"/>
-                            <path d="M7.266 29.154l.523-3.322-1.165-.027H1.061L4.927 1.292a.316.316 0 0 1 .314-.268h9.38c3.114 0 5.263.648 6.385 1.927.526.6.861 1.227 1.023 1.917.17.724.173 1.589.007 2.644l-.012.077v.676l.526.298a3.69 3.69 0 0 1 1.065.812c.45.513.741 1.165.864 1.938.127.795.085 1.741-.123 2.812-.24 1.232-.628 2.305-1.152 3.183a6.547 6.547 0 0 1-1.825 2c-.696.494-1.523.869-2.458 1.109-.906.236-1.939.355-3.072.355h-.73c-.522 0-1.029.188-1.427.525a2.21 2.21 0 0 0-.744 1.328l-.055.299-.924 5.855-.042.215c-.011.068-.03.102-.058.125a.155.155 0 0 1-.096.035H7.266z" fill="#253B80"/>
-                            <path d="M23.048 7.667c-.028.179-.06.362-.096.55-1.237 6.351-5.469 8.545-10.874 8.545H9.326c-.661 0-1.218.48-1.321 1.132L6.596 26.83l-.399 2.533a.704.704 0 0 0 .695.814h4.881c.578 0 1.069-.42 1.16-.99l.048-.248.919-5.832.059-.32c.09-.572.582-.992 1.16-.992h.73c4.729 0 8.431-1.92 9.513-7.476.452-2.321.218-4.259-.978-5.622a4.667 4.667 0 0 0-1.336-1.03z" fill="#179BD7"/>
-                            <path d="M21.754 7.151a9.757 9.757 0 0 0-1.203-.267 15.284 15.284 0 0 0-2.426-.177h-7.352a1.172 1.172 0 0 0-1.159.992L8.05 17.605l-.045.289a1.336 1.336 0 0 1 1.321-1.132h2.752c5.405 0 9.637-2.195 10.874-8.545.037-.188.068-.371.096-.55a6.594 6.594 0 0 0-1.017-.429 9.045 9.045 0 0 0-.277-.087z" fill="#222D65"/>
-                            <path d="M9.614 7.699a1.169 1.169 0 0 1 1.159-.991h7.352c.871 0 1.684.057 2.426.177a9.757 9.757 0 0 1 1.481.353c.365.121.704.264 1.017.429.368-2.347-.003-3.945-1.272-5.392C20.378.682 17.853 0 14.622 0h-9.38c-.66 0-1.223.48-1.325 1.133L.01 25.898a.806.806 0 0 0 .795.932h5.791l1.454-9.225 1.564-9.906z" fill="#253B80"/>
+                        Apple Pay
+                        </span>
+                        <span class="badge">
+                        <svg viewBox="0 0 24 24">
+                            <path fill="#4285F4" d="M12.24 10.285V14.4h6.806c-.275 1.765-2.056 5.174-6.806 5.174-4.095 0-7.439-3.389-7.439-7.574s3.345-7.574 7.439-7.574c2.33 0 3.891.989 4.785 1.849l3.254-3.138C18.189 1.186 15.479 0 12.24 0c-6.635 0-12 5.365-12 12s5.365 12 12 12c6.926 0 11.52-4.869 11.52-11.726 0-.788-.085-1.39-.189-1.989H12.24z"/>
                         </svg>
+                        Google Pay
+                        </span>
                     </div>
-                    <span>Paypal</span>
-                </button>
+                    </div>
+                </div>
+                </label>
             </div>
-            <!-- Payment buttons -->
-            <button class="primary-btn" id="stripeCheckoutBtn">Proceed with payment</button>
-            <button class="primary-btn" id="gpayBtn" style="display:none;">Continue with Google Pay</button>
-            <button class="primary-btn" id="applepayBtn" style="display:none;">Continue with Apple Pay</button>
-            <button class="primary-btn" id="paypalBtn" style="display:none;">Continue with PayPal</button>
-
+        <div class="payment-option">
+                <input type="radio" id="paypal" name="payment">
+                <label for="paypal">
+                <div class="option-content">
+                    <div class="radio-circle"></div>
+                    <div class="icon-container">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944 3.72a.77.77 0 0 1 .757-.65h6.96c2.303 0 4.122.626 5.175 1.819.913 1.035 1.271 2.458.989 4.181-.012.067-.024.134-.038.2-.015.07-.032.14-.05.21-.502 2.67-2.23 4.47-5.132 5.09a10.18 10.18 0 0 1-2.197.232H9.92a.77.77 0 0 0-.758.65l-.808 5.17a.641.641 0 0 1-.633.715h-.645z"/>
+                        <path d="M19.952 7.23c-.075.418-.177.854-.312 1.31-.802 2.724-2.756 4.39-5.736 4.873a9.88 9.88 0 0 1-1.728.148H9.492l-.896 5.723a.641.641 0 0 1-.633.716H5.6l.232-1.484.58-3.716.012-.077.116-.745a.77.77 0 0 1 .758-.65h1.488c.75 0 1.457-.078 2.12-.234 2.67-.624 4.278-2.29 4.907-4.765.25-.985.328-1.844.255-2.585-.027-.28-.076-.54-.146-.78.088.044.173.092.256.144.64.403 1.107.969 1.357 1.678.147.414.239.876.26 1.384l.157.06z" opacity="0.7"/>
+                    </svg>
+                    </div>
+                    <div class="text-content">
+                    <div class="option-title">PayPal</div>
+                    <div class="option-description">Pay using your PayPal account</div>
+                    </div>
+                </div>
+                </label>
+        </div>
             
 
-                <!-- <script src="js/payment-validation.js"></script> -->
-     <script>
-document.addEventListener('DOMContentLoaded', () => {
-    const paymentOptions = document.querySelectorAll('.payment-option');
+        <!-- Payment Button -->
+        <button class="primary-btn" id="paymentBtn">Proceed with payment</button>
+    </main>
 
-    const stripeBtn = document.getElementById('stripeCheckoutBtn');
-    const gpayBtn = document.getElementById('gpayBtn');
-    const applepayBtn = document.getElementById('applepayBtn');
-    const paypalBtn = document.getElementById('paypalBtn');
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const paymentOptions = document.querySelectorAll('.payment-option');
+        const paymentBtn = document.getElementById('paymentBtn');
 
-    function hideAllButtons() {
-        if (stripeBtn) stripeBtn.style.display = 'none';
-        if (gpayBtn) gpayBtn.style.display = 'none';
-        if (applepayBtn) applepayBtn.style.display = 'none';
-        if (paypalBtn) paypalBtn.style.display = 'none';
-    }
+        let currentPaymentMethod = 'card';
 
-    paymentOptions.forEach(option => {
-        option.addEventListener('click', () => {
-            // Visual active state
-            paymentOptions.forEach(o => o.classList.remove('active'));
-            option.classList.add('active');
+        // Payment method switching
+        paymentOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                // Remove active class from all
+                paymentOptions.forEach(o => o.classList.remove('active'));
+                
+                // Add active to clicked
+                option.classList.add('active');
+                
+                // Check radio
+                option.querySelector('input[type="radio"]').checked = true;
+                
+                // Get method
+                const method = option.dataset.method;
+                currentPaymentMethod = method;
+                
+                // Update button text
+                if (method === 'card') {
+                    paymentBtn.textContent = 'Proceed with payment';
+                } else if (method === 'paypal') {
+                    paymentBtn.textContent = 'Continue with PayPal';
+                }
+            });
+        });
 
-            // Radio sync
-            option.querySelector('input[type="radio"]').checked = true;
+        // Payment handler
+        paymentBtn.addEventListener('click', function() {
+            const selectedRadio = document.querySelector('input[name="payment"]:checked');
+            const paymentMethod = selectedRadio.id; // 'card' or 'paypal'
+            
+            console.log('Payment initiated with method:', paymentMethod);
 
-            const method = option.dataset.method;
+            // Get order data
+            const ticketData = sessionStorage.getItem('ticketData');
+            let orderData = {};
+            
+            if (ticketData) {
+                orderData = JSON.parse(ticketData);
+            } else {
+                orderData = {
+                    ticketType: sessionStorage.getItem('ticketType') || 'Early Bird',
+                    quantity: parseInt(sessionStorage.getItem('ticketQuantity')) || 1,
+                    price: parseFloat(sessionStorage.getItem('ticketPrice')) || 25,
+                    basePrice: parseFloat(sessionStorage.getItem('basePrice')) || 25
+                };
+            }
 
-            hideAllButtons();
+            const ticketType = (orderData.ticketType || 'early bird').toLowerCase();
+            
+            if (paymentMethod === 'paypal') {
+                // Redirect to custom PayPal checkout page
+                this.disabled = true;
+                this.textContent = 'Redirecting to PayPal...';
+                window.location.href = 'paypal-checkout.html';
+                
+            } else {
+                // Stripe links
+                const stripeLinks = {
+                    'early bird': 'https://buy.stripe.com/test_eVqdRa2Iz4Po4iwgoX3Ru02',
+                    'regular': 'https://buy.stripe.com/test_9B67sM3MDepY4iw3Cb3Ru03',
+                    'vip': 'https://buy.stripe.com/test_fZucN6erhchQ7uI4Gf3Ru04'
+                };
 
-            if (method === 'card' && stripeBtn) stripeBtn.style.display = 'block';
-            if (method === 'gpay' && gpayBtn) gpayBtn.style.display = 'block';
-            if (method === 'applepay' && applepayBtn) applepayBtn.style.display = 'block';
-            if (method === 'paypal' && paypalBtn) paypalBtn.style.display = 'block';
+                const stripeLink = stripeLinks[ticketType];
+                
+                if (!stripeLink) {
+                    alert('Payment link not configured.');
+                    return;
+                }
+
+                this.disabled = true;
+                this.textContent = 'Redirecting...';
+                window.location.href = stripeLink;
+            }
         });
     });
-
-    // Default state (Card)
-    hideAllButtons();
-    if (stripeBtn) stripeBtn.style.display = 'block';
-});
-</script>
-
-
-
-    </body>
+    </script>
+    <!-- PayPal SDK -->
+<script src="https://www.paypal.com/sdk/js?client-id=AWPE9j4eLjsg-JiO2cH-Gm79bhfKESA-HyqdE94q3M9uFNA9DfFqEvfKMNeZWx-AI9EJnpA6wi1MWOye&currency=AUD"></script>
+</body>
 </html>

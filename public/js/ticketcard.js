@@ -1,43 +1,57 @@
 // Ticket Card Interactive Functionality
 document.addEventListener('DOMContentLoaded', function() {
     
+    // ===== HARDCODED EVENT DATA (temporary until Firebase is set up) =====
+    const eventData = {
+        eventId: 'event_001',
+        eventName: 'AFRO SEASON VOLUME 4',
+        eventDate: 'Friday, October 2025, 10:00pm ACST',
+        eventImage: 'images/event_checkout.png',
+        ticketTypes: [
+            {
+                name: 'Early Bird',
+                price: 25,
+                description: 'Limited early access tickets with exclusive perks and priority entry'
+            },
+            {
+                name: 'Regular',
+                price: 30,
+                description: 'Standard admission with full access to all event areas and activities'
+            },
+            {
+                name: 'VIP',
+                price: 40,
+                description: 'Premium VIP experience with exclusive lounge access, priority entry, and special perks'
+            }
+        ]
+    };
+    
     // ===== TICKET TYPE SWITCHING =====
     const ticketTypes = document.querySelectorAll('.ticket-type');
     const ticketPriceElement = document.querySelector('.ticket-price');
     const ticketNoteElement = document.querySelector('.ticket-note');
     
-    // Ticket pricing and descriptions
-    const ticketData = {
-        'early bird': {
-            price: 25,
-            note: 'Limited early access tickets with exclusive perks and priority entry'
-        },
-        'regular': {
-            price: 30,
-            note: 'Standard admission with full access to all event areas and activities'
-        },
-        'vip': {
-            price: 40,
-            note: 'Premium VIP experience with exclusive lounge access, priority entry, and special perks'
-        }
-    };
+    // Build ticket data
+    const ticketData = {};
+    eventData.ticketTypes.forEach(ticket => {
+        const key = ticket.name.toLowerCase();
+        ticketData[key] = {
+            price: ticket.price,
+            note: ticket.description
+        };
+    });
     
     let currentTicketType = 'early bird';
-    let currentPrice = 25;
+    let currentPrice = ticketData[currentTicketType].price;
     
     // Handle ticket type button clicks
     ticketTypes.forEach(button => {
         button.addEventListener('click', function() {
-            // Remove active class from all buttons
             ticketTypes.forEach(btn => btn.classList.remove('active'));
-            
-            // Add active class to clicked button
             this.classList.add('active');
             
-            // Get ticket type (convert to lowercase for matching)
             currentTicketType = this.textContent.trim().toLowerCase();
             
-            // Update price and note
             if (ticketData[currentTicketType]) {
                 currentPrice = ticketData[currentTicketType].price;
                 updatePriceDisplay();
@@ -55,30 +69,22 @@ document.addEventListener('DOMContentLoaded', function() {
     const increaseBtn = document.getElementById('increaseQty');
     const quantityValue = document.getElementById('quantityValue');
     
-    // Update quantity function
     function updateQuantity(change) {
         const newQuantity = quantity + change;
         
-        // Check boundaries
         if (newQuantity >= minQty && newQuantity <= maxQty) {
             quantity = newQuantity;
             quantityValue.textContent = quantity;
-            
-            // Update price display
             updatePriceDisplay();
             
-            // Update button states
             decreaseBtn.disabled = quantity <= minQty;
             increaseBtn.disabled = quantity >= maxQty;
         }
     }
     
-    // Attach event listeners to quantity buttons
     if (decreaseBtn && increaseBtn) {
         decreaseBtn.addEventListener('click', () => updateQuantity(-1));
         increaseBtn.addEventListener('click', () => updateQuantity(1));
-        
-        // Initialize decrease button as disabled
         decreaseBtn.disabled = true;
     }
     
@@ -87,64 +93,61 @@ document.addEventListener('DOMContentLoaded', function() {
         const totalPrice = currentPrice * quantity;
         
         if (ticketPriceElement) {
-            // If quantity = 1, show simple price
             if (quantity === 1) {
                 ticketPriceElement.innerHTML = `$${totalPrice} <span>/person</span>`;
-            } 
-            // If quantity > 1, show total breakdown
-            else {
+            } else {
                 ticketPriceElement.innerHTML = `$${totalPrice} <span>($${currentPrice} × ${quantity})</span>`;
             }
         }
     }
     
-    // Format ticket type for display
     function formatTicketType(type) {
         return type.split(' ').map(word => 
             word.charAt(0).toUpperCase() + word.slice(1)
         ).join(' ');
     }
     
-    // ===== GET TICKETS BUTTON - MOBILE vs DESKTOP =====
+    // ===== GET TICKETS BUTTON =====
     const getTicketsBtn = document.querySelector('.ticket-btn');
     
     if (getTicketsBtn) {
         getTicketsBtn.addEventListener('click', function() {
-            // Prepare complete ticket order data
             const orderData = {
-                eventName: 'AFRO SEASON VOLUME 4',
-                eventDate: 'Friday, October 2025, 10:00pm ACST',
-                eventImage: 'images/event_checkout.png',
+                eventId: eventData.eventId,
+                eventName: eventData.eventName,
+                eventDate: eventData.eventDate,
+                eventImage: eventData.eventImage,
                 ticketType: formatTicketType(currentTicketType),
                 quantity: quantity,
                 basePrice: currentPrice,
                 price: currentPrice * quantity
             };
             
-            // Check screen size
+            console.log('Order data:', orderData); // Debug log
+            
             const isMobile = window.innerWidth <= 768;
             
             if (isMobile) {
-                // MOBILE: Save complete data as single object for consistency
+                // Save to sessionStorage
                 sessionStorage.setItem('ticketData', JSON.stringify(orderData));
-                
-                // Also save individual items for backward compatibility
                 sessionStorage.setItem('ticketType', formatTicketType(currentTicketType));
                 sessionStorage.setItem('ticketQuantity', quantity);
                 sessionStorage.setItem('ticketPrice', currentPrice * quantity);
                 sessionStorage.setItem('basePrice', currentPrice);
                 sessionStorage.setItem('eventName', orderData.eventName);
                 sessionStorage.setItem('eventDate', orderData.eventDate);
+                sessionStorage.setItem('eventId', orderData.eventId);
                 
-                // Navigate to checkout
+                console.log('Redirecting to mobile checkout...'); // Debug log
                 window.location.href = 'checkout1.html';
             } else {
-                // DESKTOP: Open modal
+                // Desktop modal
                 if (typeof checkoutFlow !== 'undefined') {
+                    console.log('Opening desktop checkout modal...'); // Debug log
                     checkoutFlow.showStep1(orderData);
                 } else {
                     console.error('Checkout flow not loaded');
-                    // Fallback: save to session and redirect
+                    // Fallback to mobile flow
                     sessionStorage.setItem('ticketData', JSON.stringify(orderData));
                     window.location.href = 'checkout1.html';
                 }
@@ -152,13 +155,12 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Initialize price display
+    // Initialize
     updatePriceDisplay();
     
-    // Log ticket data for debugging (remove in production)
-    console.log('Ticket card initialized:', {
-        currentType: currentTicketType,
-        currentPrice: currentPrice,
-        quantity: quantity
+    console.log('Ticket card initialized successfully!', {
+        currentTicketType,
+        currentPrice,
+        quantity
     });
 });

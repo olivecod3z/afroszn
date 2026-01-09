@@ -71,7 +71,7 @@
     align-items: center;
     justify-content: center;
     gap: 12px;
-    margin-bottom: 32px;
+    margin-bottom: 40px;
 }
 
 .step {
@@ -111,9 +111,15 @@
     color: white;
     margin: 0 0 24px 0;
 }
+.section-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
 
 /* Ticket Card (Step 1) */
 .ticket-card-mobile {
+    align-items: center;
     background: #0D0D0D;
     border: 1px solid #F04400;
     padding: 40px 20px;
@@ -232,57 +238,171 @@
     grid-template-columns: 1fr 1fr;
     gap: 16px;
 }
+/* Section Subtitle */
+.section-subtitle {
+    color: #9AA4B2;
+    font-size: 0.85rem;
+    margin: -16px 0 24px 0;
+    font-weight: 400;
+}
 
-/* Payment Methods */
-.payment-methods {
+  .payment-options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .payment-option {
+      position: relative;
+      width: 100%;
+    }
+
+    .payment-option input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .payment-option label {
+      display: block;
+      padding: 16px;
+      border-radius: 12px;
+      border: 1px solid hsl(220, 15%, 18%);
+      background-color: hsl(220, 18%, 10% / 0.5);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .payment-option label:hover {
+      border-color: hsl(215, 15%, 35%);
+      background-color: hsl(220, 15%, 15% / 0.4);
+    }
+
+    .payment-option input[type="radio"]:checked + label {
+      background-color: hsl(220, 15%, 12%);
+      border-color: #4285F4;
+      border-width: 2px;
+    }
+
+    .option-content {
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    /* Radio circle */
+    .radio-circle {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 2px solid hsl(215, 15%, 40%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+      transition: all 0.3s ease;
+    }
+
+    .radio-circle::after {
+      content: '';
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: #4285F4;
+      transform: scale(0);
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+
+    .payment-option input[type="radio"]:checked + label .radio-circle {
+      border-color: #4285F4;
+      background-color: transparent;
+    }
+
+    .payment-option input[type="radio"]:checked + label .radio-circle::after {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    /* Icon container */
+    .icon-container {
+      flex-shrink: 0;
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      background-color: hsl(220, 15%, 18% / 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .icon-container svg {
+      width: 24px;
+      height: 24px;
+      fill: hsl(215, 15%, 55%);
+      transition: all 0.3s ease;
+    }
+
+    .payment-option input[type="radio"]:checked + label .icon-container {
+      background-color: hsl(175, 70%, 50% / 0.15);
+    }
+
+
+    /* Text content */
+   /* Text content */
+.text-content {
+    flex: 1;
+    min-width: 0;
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    margin-bottom: 24px;
 }
 
-.payment-option {
+.option-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: hsl(210, 20%, 80%);
+    transition: color 0.3s ease;
+}
+
+.payment-option input[type="radio"]:checked + label .option-title {
+    color: hsl(210, 20%, 95%);
+}
+
+.option-description {
+    font-size: 0.875rem;
+    color: hsl(215, 15%, 55%);
+    margin-top: 2px;
+    margin-bottom: 8px; /* Add space between description and badges */
+}
+
+/* Badges - Position directly under description */
+.badges {
     display: flex;
+    gap: 8px;
+    margin-top: 0; /* Remove top margin since description has bottom margin */
+    flex-wrap: wrap;
     align-items: center;
-    gap: 12px;
-    padding: 14px 16px;
-    background: #0D0D0D;
-    border: 2px solid #2a2a2d;
-    color: #9AA4B2;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    width: 100%;
-    text-align: left;
 }
 
-/* custom radio (base) */
-.payment-option input[type="radio"] {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 20px;
-  height: 20px;
-  border: 2px solid #9AA4B2;
-  border-radius: 50%;
-  background: transparent;
-  cursor: pointer;
-  position: relative;
-  transition: border-color 150ms ease, background 150ms ease;
-  flex-shrink: 0;
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    background-color: hsl(220, 15%, 18% / 0.6);
+    font-size: 0.75rem;
+    color: hsl(215, 15%, 55%);
 }
 
-/* show hover focus state */
-.payment-option input[type="radio"]:hover,
-.payment-option input[type="radio"]:focus {
-  border-color: #fff;
-  outline: none;
+.badge svg {
+    width: 14px;
+    height: 14px;
 }
 
-/* when checked (or when option gets .active) show the blue dot */
-.payment-option input[type="radio"]:checked,
-.payment-option.active input[type="radio"] {
-  border-color: #4285F4; /* blue border */
-  background: radial-gradient(circle at center, #4285F4 55%, transparent 56%);
-}
 
 /* optional — make the dot slightly smaller on very small screens */
 @media (max-width: 480px) {

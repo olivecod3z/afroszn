@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Successful - Afro Szn</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div class="success-container">
+        <div class="success-icon">✓</div>
+        <h1>Payment Successful!</h1>
+        <p id="successMessage">Thank you for your purchase.</p>
+        <p id="transactionInfo"></p>
+        <a href="index.html" class="btn-primary">Return Home</a>
+    </div>
+
+    <script>
+    // Check payment method
+    const urlParams = new URLSearchParams(window.location.search);
+    const paymentMethod = urlParams.get('payment');
+    
+    if (paymentMethod === 'paypal') {
+        const transactionId = sessionStorage.getItem('paypalTransactionId');
+        const payerEmail = sessionStorage.getItem('paypalPayerEmail');
+        
+        document.getElementById('successMessage').textContent = 
+            `Your payment via PayPal was successful!`;
+        document.getElementById('transactionInfo').textContent = 
+            `Transaction ID: ${transactionId || 'Processing...'}`;
+    } else {
+        // Stripe payment
+        document.getElementById('successMessage').textContent = 
+            `Your payment was successful!`;
+    }
+    </script>
+
+    <style>
+    .success-container {
+        max-width: 600px;
+        margin: 100px auto;
+        padding: 40px;
+        text-align: center;
+        background: #0D0D0D;
+        border: 2px solid #4CAF50;
+        border-radius: 16px;
+    }
+    .success-icon {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 24px;
+        background: #4CAF50;
+        color: white;
+        font-size: 48px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    h1 {
+        color: white;
+        margin-bottom: 16px;
+    }
+    p {
+        color: #9AA4B2;
+        margin-bottom: 12px;
+    }
+    .btn-primary {
+        display: inline-block;
+        margin-top: 24px;
+        padding: 14px 32px;
+        background: #F04400;
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: 600;
+    }
+    </style>
+</body>
+</html>
